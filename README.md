@@ -43,6 +43,7 @@ principle  = [
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
   Advance_hand_gesture                 JavaScript     Vision          4★  today
+                                       └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
   auracontrol-backend                  TypeScript     Vision          4★  today
                                        └─ Real-time hand-gesture recognition backend (AuraControl) - F..
   VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            4★  today
@@ -70,6 +71,7 @@ principle  = [
 <br/>
 
 **[Advance_hand_gesture](https://github.com/Tusharkapoor-oop/Advance_hand_gesture)** &nbsp;·&nbsp; `Vision` &nbsp;·&nbsp; ⭐ 4
+<br/><sub>Real-time hand-gesture recognition - MediaPipe landmarks, TensorFlow classifier, browser demo</sub>
 
 **[auracontrol-backend](https://github.com/Tusharkapoor-oop/auracontrol-backend)** &nbsp;·&nbsp; `Vision` &nbsp;·&nbsp; ⭐ 4
 <br/><sub>Real-time hand-gesture recognition backend (AuraControl) - FastAPI, MediaPipe, WebSocket</sub>
@@ -103,7 +105,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-09-30 16:12 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-09-30 16:14 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
