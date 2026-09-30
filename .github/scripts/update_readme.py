@@ -63,7 +63,7 @@ def filter_repos(repos):
         if r.get("size", 0) == 0:
             continue
         result.append(r)
-    return result[:8]  # show maximum 8 repos
+    return result[:11]  # show maximum 11 repos (all current public repos)
 
 
 # ── Formatting ─────────────────────────────────────────────────────────
