@@ -42,43 +42,53 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Engineering     4★  today
-  OS_LAB_Linux_Ubantu                  Python         Engineering     4★  today
-  go-bric                              TypeScript     Engineering     4★  today
-  ReflectAI                            Jupyter Notebook Engineering     4★  today
-  Sustainable-Agriculture-Project      Jupyter Notebook Engineering     4★  today
-  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Engineering     6★  today
-                                       └─ This project is an AI-based Study Planner designed to help s..
-  NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     4★  today
-  auracontrol-backend                  TypeScript     Engineering     4★  today
+  Advance_hand_gesture                 JavaScript     Vision          4★  today
+  auracontrol-backend                  TypeScript     Vision          4★  today
                                        └─ Real-time hand-gesture recognition backend (AuraControl) - F..
+  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            4★  today
+                                       └─ Netflix and Airbnb data analysis - EDA notebooks, decks, and..
+  OS_LAB_Linux_Ubantu                  Python         Backend         4★  today
+                                       └─ Operating Systems lab in Python - system calls, CPU scheduli..
+  go-bric                              TypeScript     Frontend        4★  today
+                                       └─ Multi-agent company scouting on Next.js and Gemini - five sp..
+  ReflectAI                            Jupyter Notebook Engineering     4★  today
+                                       └─ Deterministic end-of-day reflection tool - structured conver..
+  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           4★  today
+                                       └─ Crop recommendation from soil/climate features - full ML pip..
+  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         6★  today
+                                       └─ This project is an AI-based Study Planner designed to help s..
 ```
 
 <details>
 <summary><sub>View repository links</sub></summary>
 <br/>
 
-**[VOIS_AICTE_Oct2025_TUSHAR-KAPOOR](https://github.com/Tusharkapoor-oop/VOIS_AICTE_Oct2025_TUSHAR-KAPOOR)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
+**[Advance_hand_gesture](https://github.com/Tusharkapoor-oop/Advance_hand_gesture)** &nbsp;·&nbsp; `Vision` &nbsp;·&nbsp; ⭐ 4
 
-**[OS_LAB_Linux_Ubantu](https://github.com/Tusharkapoor-oop/OS_LAB_Linux_Ubantu)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
+**[auracontrol-backend](https://github.com/Tusharkapoor-oop/auracontrol-backend)** &nbsp;·&nbsp; `Vision` &nbsp;·&nbsp; ⭐ 4
+<br/><sub>Real-time hand-gesture recognition backend (AuraControl) - FastAPI, MediaPipe, WebSocket</sub>
 
-**[go-bric](https://github.com/Tusharkapoor-oop/go-bric)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
+**[VOIS_AICTE_Oct2025_TUSHAR-KAPOOR](https://github.com/Tusharkapoor-oop/VOIS_AICTE_Oct2025_TUSHAR-KAPOOR)** &nbsp;·&nbsp; `Data` &nbsp;·&nbsp; ⭐ 4
+<br/><sub>Netflix and Airbnb data analysis - EDA notebooks, decks, and course materials.</sub>
+
+**[OS_LAB_Linux_Ubantu](https://github.com/Tusharkapoor-oop/OS_LAB_Linux_Ubantu)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 4
+<br/><sub>Operating Systems lab in Python - system calls, CPU scheduling, synchronization, memory, file systems.</sub>
+
+**[go-bric](https://github.com/Tusharkapoor-oop/go-bric)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 4
+<br/><sub>Multi-agent company scouting on Next.js and Gemini - five specialist agents over a shared dataset.</sub>
 
 **[ReflectAI](https://github.com/Tusharkapoor-oop/ReflectAI)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
+<br/><sub>Deterministic end-of-day reflection tool - structured conversation to a psychological tree output.</sub>
 
-**[Sustainable-Agriculture-Project](https://github.com/Tusharkapoor-oop/Sustainable-Agriculture-Project)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
+**[Sustainable-Agriculture-Project](https://github.com/Tusharkapoor-oop/Sustainable-Agriculture-Project)** &nbsp;·&nbsp; `AI/ML` &nbsp;·&nbsp; ⭐ 4
+<br/><sub>Crop recommendation from soil/climate features - full ML pipeline with preprocessing and evaluation.</sub>
 
-**[tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER](https://github.com/Tusharkapoor-oop/tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 6
+**[tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER](https://github.com/Tusharkapoor-oop/tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 6
 <br/><sub>This project is an AI-based Study Planner designed to help students automatically generate  study plans and find relevant educational videos.  The project consists of both frontend and backend components.  The user interacts with the system by uploading a syllabus, which is processed to extract  key topics.</sub>
-
-**[NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis](https://github.com/Tusharkapoor-oop/NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
-
-**[auracontrol-backend](https://github.com/Tusharkapoor-oop/auracontrol-backend)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
-<br/><sub>Real-time hand-gesture recognition backend (AuraControl) - FastAPI, MediaPipe, WebSocket</sub>
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-09-30 08:29 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-09-30 15:17 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
