@@ -9,6 +9,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0f0f1a?style=for-the-badge&logo=linkedin&logoColor=4f46e5)](https://www.linkedin.com/in/tushar-kapoor-143484333/)
 [![LeetCode](https://img.shields.io/badge/LeetCode-0f0f1a?style=for-the-badge&logo=leetcode&logoColor=4f46e5)](https://leetcode.com/u/tusharkapoor66/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-0f0f1a?style=for-the-badge&logo=vercel&logoColor=4f46e5)](https://github.com/Tusharkapoor-oop/Kapoor-portfolio)
+[![COGNITUM](https://img.shields.io/badge/COGNITUM-4D_neural_manifold-0f0f1a?style=for-the-badge&logo=threedotjs&logoColor=22d3ee)](https://tusharkapoor-oop.github.io/)
 
 <br/>
 
