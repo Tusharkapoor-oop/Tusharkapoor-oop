@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>COGNITUM 6D — Tushar Kapoor · AI/ML Prodigy</title>
+<meta name="description" content="A portfolio running live mathematics: a hexeract rotating in SO(6), a normalizing flow sampling every particle, and a 4096-dimensional hypervector memory that answers your cursor. Built by Tushar Kapoor, AI/ML engineer." />
+<meta name="author" content="Tushar Kapoor" />
+<meta property="og:title" content="COGNITUM 6D — Tushar Kapoor · AI/ML Engineer" />
+<meta property="og:description" content="6D hypercube + normalizing flow + hypervector memory, all running live in your browser." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://tusharkapoor-oop.github.io/" />
+<meta name="theme-color" content="#04040c" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌀</text></svg>" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="loader" aria-hidden="true">
+  <div class="loader-ring"></div>
+  <div class="loader-word">COGNITUM</div>
+  <div class="loader-sub">compiling 6-manifold<span class="dots"></span></div>
+</div>
+
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<header class="hud tl">
+  <span class="hud-brand">COGNITUM</span> <span class="dim">// 6D · v2.0</span><br />
+  <span class="dim">state: <span class="ok" id="stateLabel">EMERGENT</span></span><br />
+  <span class="dim" id="thetaRead">SO(6) &#952; —</span>
+</header>
+
+<div class="hud tr dim">
+  <span id="fps">fps --</span> · log p(x) <span class="ok" id="logp">-0.00</span><br />
+  H(attention) <span class="ok" id="hent">0.00</span> · top <span class="ok" id="topmatch">—</span><br />
+  visitor_embedding <span class="ok" id="embed">0x0000000000000000</span>
+</div>
+
+<nav class="hud bl" id="layerNav" aria-label="Dimensions">
+  <button data-goto="0.00" class="active">D0 EMERGENCE</button>
+  <button data-goto="0.24">D1 SUBSTRATE</button>
+  <button data-goto="0.50">D2 MEMORY</button>
+  <button data-goto="0.74">D3 PROOF</button>
+  <button data-goto="0.95">D4 SIGNAL</button>
+</nav>
+
+<div class="hud br dim" id="hint">scroll / drag — your cursor is the query</div>
+
+<div id="tooltip" role="tooltip"></div>
+
+<main>
+  <section id="s0" data-in="0" data-out="0.17">
+    <h1 class="sr-only">Tushar Kapoor — AI/ML Engineer</h1>
+    <p class="hero-sub">AI / ML ENGINEER &nbsp;·&nbsp; 6D MANIFOLD &nbsp;·&nbsp; LIVE MODELS</p>
+    <p class="hero-line dim">
+      this page is not decorated with AI — it <span class="ok">runs</span> it.<br />
+      a hypercube rotating through all 15 planes of SO(6) · a normalizing flow sampling every particle<br />
+      a 4096-dimensional hypervector memory retrieving with your cursor · <span class="ok">descend.</span>
+    </p>
+    <p class="hero-links">
+      <a href="https://github.com/Tusharkapoor-oop" target="_blank" rel="noopener">GITHUB</a>
+      <a href="https://www.linkedin.com/in/tushar-kapoor-143484333/" target="_blank" rel="noopener">LINKEDIN</a>
+      <a href="https://leetcode.com/u/tusharkapoor66/" target="_blank" rel="noopener">LEETCODE</a>
+    </p>
+    <div class="cue">▼ &nbsp;SCROLL TO DESCEND&nbsp; ▼</div>
+  </section>
+
+  <section id="s1" data-in="0.20" data-out="0.43">
+    <p class="layer-tag">D1 / SUBSTRATE</p>
+    <h2>hypervector substrate</h2>
+    <p class="lede dim">
+      every skill is a bipolar vector in &#8477;<sup>4096</sup>, bundled by superposition.<br />
+      move your cursor — the query vector changes and memory re-ranks <span class="ok">live</span>.
+    </p>
+    <div class="chips" id="skillChips"></div>
+    <div class="meters" id="skillMeters" aria-hidden="true"></div>
+  </section>
+
+  <section id="s2" data-in="0.45" data-out="0.67">
+    <p class="layer-tag">D2 / MEMORY</p>
+    <h2>eleven attractors</h2>
+    <p class="lede dim">
+      repositories as bodies in memory space — arcs are cosine similarity under the current query.<br />
+      hover a body to inspect · click to open the long-term store.
+    </p>
+    <div class="meters repo" id="repoMeters"></div>
+  </section>
+
+  <section id="s3" data-in="0.69" data-out="0.87">
+    <p class="layer-tag">D3 / PROOF</p>
+    <h2>held-out results</h2>
+    <div class="awards">
+      <div class="award"><b>1st Place</b><span>GO BRICS International Internship · Letter of Recommendation</span></div>
+      <div class="award"><b>Qualified</b><span>GO BRICS International Hackathon</span></div>
+      <div class="award"><b>Dean's Honour</b><span>K.R. Mangalam University</span></div>
+      <div class="award"><b>30/30 tests</b><span>NPU-Fit Checker — automated fallback diagnosis suite</span></div>
+      <div class="award"><b>Azure AI Fundamentals</b><span>Microsoft</span></div>
+      <div class="award"><b>Cybersecurity</b><span>Cisco Networking Academy</span></div>
+      <div class="award"><b>AI &amp; Cloud</b><span>IBM SkillsBuild · Edunet</span></div>
+      <div class="award"><b>Tech Simulation</b><span>Deloitte Australia</span></div>
+    </div>
+  </section>
+
+  <section id="s4" data-in="0.88" data-out="1.01">
+    <p class="layer-tag">D4 / SIGNAL</p>
+    <h2>reach the mind</h2>
+    <p class="lede dim">Internships · hackathons · research collaboration.</p>
+    <p class="hero-links big">
+      <a href="https://github.com/Tusharkapoor-oop" target="_blank" rel="noopener">GITHUB</a>
+      <a href="https://www.linkedin.com/in/tushar-kapoor-143484333/" target="_blank" rel="noopener">LINKEDIN</a>
+      <a href="https://leetcode.com/u/tusharkapoor66/" target="_blank" rel="noopener">LEETCODE</a>
+      <a href="https://github.com/Tusharkapoor-oop/Kapoor-portfolio" target="_blank" rel="noopener">PORTFOLIO</a>
+    </p>
+    <p class="dim tiny">
+      COGNITUM 6D · SO(6) bivector rotations · affine-coupling normalizing flow · hypervector retrieval · Born-rule background ·<br />
+      three.js + custom GLSL · zero frameworks · &#169; 2026 Tushar Kapoor
+    </p>
+  </section>
+</main>
+
+<div id="fallback" hidden>
+  <div>
+    <h1>TUSHAR KAPOOR — AI/ML Engineer</h1>
+    <p>This experience needs WebGL. <a href="https://github.com/Tusharkapoor-oop">Enter via GitHub instead →</a></p>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
