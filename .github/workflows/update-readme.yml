@@ -1,0 +1,40 @@
+name: Update README
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 0 * * *"   # every day at midnight UTC
+  workflow_dispatch:        # manual trigger button in GitHub UI
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout profile repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Regenerate README from live repo data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/generate_readme.py
+
+      - name: Commit updated README
+        run: |
+          git config --local user.name  "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet && git diff --staged --quiet \
+            || (git add README.md \
+                && git commit -m "docs: auto-update repos [skip ci]" \
+                && git push)

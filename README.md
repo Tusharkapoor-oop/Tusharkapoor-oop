@@ -1,120 +1,128 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0d0d0d&height=120&text=TUSHAR%20KAPOOR&fontAlign=50&fontAlignY=55&fontSize=38&fontColor=FFFFFF&desc=AI%2FML%20ENGINEER%20%E2%80%A2%20COMPUTER%20VISION%20%E2%80%A2%20SYSTEMS&descAlign=50&descAlignY=80&descSize=11" width="100%" alt="Tushar Kapoor" />
+
+<a href="https://github.com/Tusharkapoor-oop">
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=13&duration=3200&pause=1800&color=4f46e5&center=true&vCenter=true&width=700&lines=gesture+%E2%86%92+landmark+%E2%86%92+classify+%E2%86%92+dispatch+%E2%86%92+execute;telemetry+%E2%86%92+pipeline+%E2%86%92+partial_fit+%E2%86%92+inference+%E2%86%92+alert;problem+%E2%86%92+architecture+%E2%86%92+decision+%E2%86%92+implementation+%E2%86%92+proof" alt="Engineering pipelines" />
+</a>
+
 </div>
 
 <br/>
 
-<div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=13&duration=4000&pause=2000&color=AAAAAA&center=true&vCenter=true&width=620&lines=Building+practical+intelligent+systems.;Computer+Vision+%C2%B7+AI+Agents+%C2%B7+Cloud+Infrastructure.;Python+%C2%B7+C%2B%2B+%C2%B7+IBM+Watsonx+%C2%B7+OpenCV.;Early-career+engineer.+Serious+technical+direction." alt="Typing SVG" />
-</div>
+```python
+# ── Identity ──────────────────────────────────────────────────────────
+name       = "Tushar Kapoor"
+position   = "AI/ML Engineer (Early Career)"
+university = "B.Tech CSE (AI & ML) · K.R. Mangalam University"
+location   = "Gurugram, India"
+direction  = "Computer Vision → Cloud AI → Intelligent Systems"
+
+links = {
+    "LinkedIn" : "https://linkedin.com/in/tushar-kapoor-143484333",
+    "LeetCode" : "https://leetcode.com/u/tusharkapoor66",
+    "Portfolio" : "https://github.com/Tusharkapoor-oop/Kapoor-portfolio",
+}
+
+philosophy = [
+    "Understand the system before writing the code.",
+    "Document the decision, not just the implementation.",
+    "Algorithmic precision over heavyweight abstraction.",
+    "Ship real work. Measure real results.",
+]
+```
+
+---
 
 <br/>
 
-<div align="center">
-  <a href="https://www.linkedin.com/in/tushar-kapoor-143484333/">
-    <img src="https://img.shields.io/badge/LINKEDIN-FFFFFF?style=flat-square&logo=linkedin&logoColor=0d0d0d" alt="LinkedIn" />
-  </a>
-  &nbsp;
-  <a href="https://leetcode.com/u/tusharkapoor66/">
-    <img src="https://img.shields.io/badge/LEETCODE-FFFFFF?style=flat-square&logo=leetcode&logoColor=0d0d0d" alt="LeetCode" />
-  </a>
-  &nbsp;
-  <a href="https://github.com/Tusharkapoor-oop/Kapoor-portfolio">
-    <img src="https://img.shields.io/badge/PORTFOLIO-FFFFFF?style=flat-square&logo=vercel&logoColor=0d0d0d" alt="Portfolio" />
-  </a>
-</div>
-
-<br/><br/>
-
+<!-- AUTO-REPOS:START — last updated manually -->
 ```
-OBJECTIVE ──────────────────────────────────────────────────────
+01 / ENGINEERING  ─────────────────────────────────────────────────────
 
-  Connect ML models to real-world interfaces.
-  Build systems that reason, respond, and adapt.
-  Document engineering decisions, not just code.
+  ┌─ [Advance_hand_gesture](https://github.com/Tusharkapoor-oop/Advance_hand_gesture)
+  │  Real-time contactless computer interaction using hand gesture recognition.
+  │  JavaScript  ·  updated 2026-09-26
+  │  #computer-vision #websocket #mediapipe
+  │
+  ┌─ [IBM-Cloud-project](https://github.com/Tusharkapoor-oop/IBM-Cloud-project)
+  │  Industrial machine failure forecasting deployed on IBM Watsonx.ai Runtime.
+  │  Jupyter Notebook  ·  updated 2026-09-26
+  │  #machine-learning #ibm-cloud #watsonx
+  │
+  ┌─ [Kapoor-portfolio](https://github.com/Tusharkapoor-oop/Kapoor-portfolio)
+  │  Personal engineering portfolio. Dark-first minimal design.
+  │  TypeScript  ·  updated 2026-09-25
+  │
+  ┌─ [DSA_PYTHON](https://github.com/Tusharkapoor-oop/DSA_PYTHON)
+  │  Core data structures and algorithm implementations in Python.
+  │  Python  ·  updated 2026-09-24
+  │
+  └─ github.com/Tusharkapoor-oop
 ```
+<!-- AUTO-REPOS:END -->
+
+> ⚡ This section regenerates automatically every 24 hours via GitHub Actions.  
+> New repositories appear here within one day of creation.
 
 <br/>
 
-```
-01 / ENGINEERING ───────────────────────────────────────────────
-
-  AuraControl          Real-time contactless computer interaction.
-                       Hand landmark tracking → gesture classification
-                       → OS-level action dispatch over WebSockets.
-                       [ Python · OpenCV · MediaPipe · FastAPI · React ]
-
-  Predictive           Industrial machine failure forecasting.
-  Maintenance          Incremental learning on IBM Watsonx.ai Runtime.
-                       Sensor telemetry → Random Forest → REST API.
-                       [ Python · Scikit-learn · IBM Watsonx.ai · AutoAI ]
-
-  Portfolio            Full-stack engineering portfolio.
-                       Dark-first minimal design. TypeScript + React.
-                       [ TypeScript · React · Vite ]
-
-  DSA — Python         Core data structures & algorithm implementations.
-                       [ Python ]
-```
-
-<br/>
+---
 
 ```
-02 / TECHNICAL DEPTH ───────────────────────────────────────────
+02 / TECHNICAL DEPTH ───────────────────────────────────────────────────
+
+  BUILDING        Python · C++ · JavaScript · FastAPI · React · OpenCV
+  WORKING WITH    IBM Watsonx.ai · Azure AI · TensorFlow · MediaPipe
+  LEARNING        Transformer architectures · Systems programming (C++)
+  EXPERIMENTING   Generative model integration · Multimodal AI systems
 
   LANGUAGES       Python · C++ · Java · JavaScript · SQL
-
-  AI / DATA       Machine Learning · Computer Vision
-                  Data Analytics · AI Agents · Statistics
-
-  CLOUD           IBM Watsonx.ai · IBM Cloud · Azure AI
-
-  ENGINEERING     DSA · OOP · APIs · WebSockets · Systems
+  AI / DATA       Machine Learning · Computer Vision · Data Analytics
+                  Statistical Inference · AI Agents
+  CLOUD           IBM Watsonx.ai · IBM Cloud Object Storage · Azure AI
+  ENGINEERING     DSA · OOP · REST APIs · WebSockets · Systems
 ```
 
-<br/>
+---
 
 ```
-03 / PROOF ─────────────────────────────────────────────────────
+03 / PROOF ─────────────────────────────────────────────────────────────
 
-  GO BRICS International Internship     1st Place / Winner
-  GO BRICS International Hackathon      Qualified
-  Dean's Honour Award                   K.R. Mangalam University
-  Azure AI Fundamentals                 Microsoft
-  Cisco Cybersecurity                   Cisco Networking Academy
-  IBM SkillsBuild AI & Cloud            Edunet / IBM
-  Deloitte Technology Simulation        Deloitte Australia
+  GO BRICS International Internship   ──  1st Place / Winner
+                                          Letter of Recommendation
+  GO BRICS International Hackathon    ──  Qualified
+  Dean's Honour Award                 ──  K.R. Mangalam University
+  Azure AI Fundamentals               ──  Microsoft
+  Cisco Cybersecurity                 ──  Cisco Networking Academy
+  IBM SkillsBuild AI & Cloud          ──  Edunet / IBM
+  Deloitte Technology Simulation      ──  Deloitte Australia
 ```
 
-<br/>
+---
 
-```
-04 / ACTIVITY ──────────────────────────────────────────────────
-```
+`04 / ACTIVITY`
 
-<p align="left">
-  <img src="https://github-readme-stats.vercel.app/api?username=Tusharkapoor-oop&show_icons=true&hide_border=true&bg_color=0d0d0d&title_color=ffffff&text_color=aaaaaa&icon_color=888888&hide=prs&rank_icon=github" width="49%" alt="GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tusharkapoor-oop&layout=compact&hide_border=true&bg_color=0d0d0d&title_color=ffffff&text_color=aaaaaa" width="49%" alt="Top Languages" />
-</p>
-
-<p align="left">
-  <img src="https://streak-stats.demolab.com?user=Tusharkapoor-oop&hide_border=true&background=0d0d0d&ring=ffffff&fire=ffffff&currStreakLabel=ffffff&sideNums=aaaaaa&currStreakNum=ffffff&sideLabels=aaaaaa&dates=555555" width="100%" alt="Streak" />
-</p>
-
-<p align="left">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Tusharkapoor-oop&bg_color=0d0d0d&color=aaaaaa&line=555555&point=ffffff&area=false&hide_border=true" width="100%" alt="Contribution Graph" />
-</p>
-
-<br/>
-
-```
-CURRENTLY ──────────────────────────────────────────────────────
-
-  Building  →  Improving AuraControl's gesture engine.
-  Exploring →  Multimodal AI systems.
-              Generative model integration.
-```
+<!-- 3D Isometric Calendar — auto-generated by GitHub Actions from real contribution data -->
+<div align="center">
+  <img src="profile-3d-contrib/profile-night-view.svg" width="100%" alt="3D Contribution Calendar — auto-generated" />
+</div>
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=0d0d0d&height=2&width=100%" width="100%" alt="" />
+  <img src="https://github-readme-stats.vercel.app/api?username=Tusharkapoor-oop&show_icons=true&hide_border=true&bg_color=0f0f1a&title_color=e2e8f0&text_color=64748b&icon_color=4f46e5&hide=prs&rank_icon=percentile&include_all_commits=true&ring_color=4f46e5" width="49%" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tusharkapoor-oop&layout=compact&hide_border=true&bg_color=0f0f1a&title_color=e2e8f0&text_color=64748b&langs_count=6" width="49%" alt="Languages" />
 </div>
+
+<div align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Tusharkapoor-oop&bg_color=0f0f1a&color=64748b&line=4f46e5&point=e2e8f0&area=true&area_color=1e1b4b&hide_border=true" width="100%" alt="Activity Graph" />
+</div>
+
+<br/>
+
+---
+
+```python
+# ── Currently ─────────────────────────────────────────────────────────
+building   = "AuraControl gesture engine · air-signature refinement"
+exploring  = ["Multimodal AI systems", "Generative model integration"]
+studying   = ["Transformer architectures", "C++ systems programming"]
+open_to    = ["Internships", "Hackathons", "Research collaboration"]
+```
