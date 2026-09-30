@@ -57,6 +57,8 @@ principle  = [
                                        └─ Crop recommendation from soil/climate features - full ML pip..
   tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         6★  today
                                        └─ This project is an AI-based Study Planner designed to help s..
+  Kapoor-portfolio                     TypeScript     Frontend        1★  today
+                                       └─ portfolio
   NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     4★  today
                                        └─ Automated NPU fallback diagnosis - find which layers fell ba..
   IBM-Cloud-project                    Jupyter Notebook AI/ML           4★  today
@@ -89,6 +91,9 @@ principle  = [
 **[tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER](https://github.com/Tusharkapoor-oop/tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 6
 <br/><sub>This project is an AI-based Study Planner designed to help students automatically generate  study plans and find relevant educational videos.  The project consists of both frontend and backend components.  The user interacts with the system by uploading a syllabus, which is processed to extract  key topics.</sub>
 
+**[Kapoor-portfolio](https://github.com/Tusharkapoor-oop/Kapoor-portfolio)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 1
+<br/><sub>portfolio</sub>
+
 **[NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis](https://github.com/Tusharkapoor-oop/NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
 <br/><sub>Automated NPU fallback diagnosis - find which layers fell back to CPU, on which target, and why.</sub>
 
@@ -96,7 +101,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-09-30 15:25 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-09-30 15:41 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
