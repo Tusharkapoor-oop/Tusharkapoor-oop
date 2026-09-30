@@ -58,10 +58,11 @@ principle  = [
   tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         6★  today
                                        └─ This project is an AI-based Study Planner designed to help s..
   Kapoor-portfolio                     TypeScript     Frontend        1★  today
-                                       └─ portfolio
+                                       └─ Personal portfolio website - React, Vite and Tailwind with G..
   NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     4★  today
                                        └─ Automated NPU fallback diagnosis - find which layers fell ba..
   IBM-Cloud-project                    Jupyter Notebook AI/ML           4★  today
+                                       └─ Predictive maintenance on IBM Cloud / Watsonx - Jupyter ML p..
 ```
 
 <details>
@@ -92,16 +93,17 @@ principle  = [
 <br/><sub>This project is an AI-based Study Planner designed to help students automatically generate  study plans and find relevant educational videos.  The project consists of both frontend and backend components.  The user interacts with the system by uploading a syllabus, which is processed to extract  key topics.</sub>
 
 **[Kapoor-portfolio](https://github.com/Tusharkapoor-oop/Kapoor-portfolio)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 1
-<br/><sub>portfolio</sub>
+<br/><sub>Personal portfolio website - React, Vite and Tailwind with GitHub Actions CI/CD</sub>
 
 **[NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis](https://github.com/Tusharkapoor-oop/NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
 <br/><sub>Automated NPU fallback diagnosis - find which layers fell back to CPU, on which target, and why.</sub>
 
 **[IBM-Cloud-project](https://github.com/Tusharkapoor-oop/IBM-Cloud-project)** &nbsp;·&nbsp; `AI/ML` &nbsp;·&nbsp; ⭐ 4
+<br/><sub>Predictive maintenance on IBM Cloud / Watsonx - Jupyter ML pipeline with training and evaluation notebooks</sub>
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-09-30 15:43 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-09-30 16:12 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
