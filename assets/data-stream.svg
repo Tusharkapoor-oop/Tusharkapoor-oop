@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" width="1200" height="120" role="img" aria-label="Data stream">
+<defs>
+  <linearGradient id="wave1" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#22d3ee"/>
+    <stop offset="0.5" stop-color="#818cf8"/>
+    <stop offset="1" stop-color="#c084fc"/>
+  </linearGradient>
+  <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#0f0f1a"/>
+    <stop offset="1" stop-color="#0d0620"/>
+  </linearGradient>
+  <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#1e1b4b" stop-opacity="0"/>
+    <stop offset="0.5" stop-color="#312e81" stop-opacity="0.9"/>
+    <stop offset="1" stop-color="#1e1b4b" stop-opacity="0"/>
+  </linearGradient>
+  <path id="p1" d="M0,74 C60,74 92,40 152,44 C212,48 242,88 302,84 C362,80 392,42 452,46 C512,50 542,90 602,86 C662,82 692,40 752,44 C812,48 842,88 902,84 C962,80 992,42 1052,46 C1112,50 1146,70 1200,62"/>
+  <path id="p2" d="M0,96 C80,94 120,76 200,78 C280,80 320,104 400,102 C480,100 520,74 600,76 C680,78 720,104 800,102 C880,100 920,74 1000,76 C1080,78 1140,92 1200,88"/>
+</defs>
+
+<rect width="1200" height="120" rx="10" fill="url(#card)"/>
+
+<g stroke="url(#fade)" stroke-width="1">
+  <line x1="0" y1="30" x2="1200" y2="30"/>
+  <line x1="0" y1="60" x2="1200" y2="60"/>
+  <line x1="0" y1="90" x2="1200" y2="90"/>
+</g>
+
+<g fill="none" stroke-linecap="round">
+  <use href="#p2" stroke="#22d3ee" stroke-width="1.6" opacity="0.35" stroke-dasharray="6 16">
+    <animate attributeName="stroke-dashoffset" values="0;-44" dur="2.8s" repeatCount="indefinite"/>
+  </use>
+  <use href="#p1" stroke="url(#wave1)" stroke-width="2.6" stroke-dasharray="20 14">
+    <animate attributeName="stroke-dashoffset" values="0;-68" dur="2.2s" repeatCount="indefinite"/>
+  </use>
+</g>
+
+<g>
+  <circle r="3.4" fill="#e2e8f0">
+    <animateMotion dur="7.5s" repeatCount="indefinite">
+      <mpath href="#p1"/>
+    </animateMotion>
+  </circle>
+  <circle r="3" fill="#22d3ee">
+    <animateMotion dur="7.5s" begin="2.5s" repeatCount="indefinite">
+      <mpath href="#p1"/>
+    </animateMotion>
+  </circle>
+  <circle r="3" fill="#c084fc">
+    <animateMotion dur="7.5s" begin="5s" repeatCount="indefinite">
+      <mpath href="#p1"/>
+    </animateMotion>
+  </circle>
+</g>
+
+<g fill="#312e81">
+  <rect x="24" y="14" width="8" height="6" rx="2"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.4s" repeatCount="indefinite"/></rect>
+  <rect x="40" y="14" width="8" height="6" rx="2"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.4s" begin="0.2s" repeatCount="indefinite"/></rect>
+  <rect x="56" y="14" width="8" height="6" rx="2"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.4s" begin="0.4s" repeatCount="indefinite"/></rect>
+  <rect x="72" y="14" width="8" height="6" rx="2"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.4s" begin="0.6s" repeatCount="indefinite"/></rect>
+  <rect x="88" y="14" width="8" height="6" rx="2"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.4s" begin="0.8s" repeatCount="indefinite"/></rect>
+</g>
+<text x="108" y="21" font-size="11" fill="#475569" font-family="Consolas,'Cascadia Code',monospace" letter-spacing="2">signal pipeline // ingest &#8594; learn &#8594; serve</text>
+</svg>

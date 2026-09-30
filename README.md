@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=venom&color=0:0d0d0d,100:0a0a1a&height=200&text=TUSHAR%20KAPOOR&fontSize=46&fontColor=e2e8f0&animation=fadeIn&fontAlignY=40&desc=AI%2FML%20Engineer%20%E2%80%A2%20Computer%20Vision%20%E2%80%A2%20Intelligent%20Systems&descSize=12&descAlignY=63&stroke=1a1a3e&strokeWidth=1" width="100%" alt="Tushar Kapoor" />
+<img src="assets/hero.svg" width="100%" alt="Tushar Kapoor — AI/ML Engineer · Computer Vision · Intelligent Systems" />
 
 <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=13&duration=3000&pause=1600&color=4f46e5&center=true&vCenter=true&width=700&lines=gesture+%E2%86%92+landmark+%E2%86%92+classify+%E2%86%92+dispatch+%E2%86%92+execute;telemetry+%E2%86%92+pipeline+%E2%86%92+partial_fit+%E2%86%92+inference+%E2%86%92+alert;problem+%E2%86%92+architecture+%E2%86%92+decision+%E2%86%92+implementation+%E2%86%92+proof" alt="Engineering pipelines" />
 
@@ -10,11 +10,16 @@
 [![LeetCode](https://img.shields.io/badge/LeetCode-0f0f1a?style=for-the-badge&logo=leetcode&logoColor=4f46e5)](https://leetcode.com/u/tusharkapoor66/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-0f0f1a?style=for-the-badge&logo=vercel&logoColor=4f46e5)](https://github.com/Tusharkapoor-oop/Kapoor-portfolio)
 
+<br/>
+
+![NPU Fit](https://img.shields.io/badge/NPU_FIT-30%2F30_tests_passing-0f0f1a?style=for-the-badge&logoColor=4f46e5)
+![GO BRICS](https://img.shields.io/badge/GO_BRICS-1st_place-0f0f1a?style=for-the-badge&logoColor=4f46e5)
+![Repos](https://img.shields.io/badge/PUBLIC_REPOS-11_live-0f0f1a?style=for-the-badge&logo=github&logoColor=4f46e5)
+![Focus](https://img.shields.io/badge/FOCUS-CV_%C2%B7_ML_%C2%B7_Agents-0f0f1a?style=for-the-badge&logoColor=4f46e5)
+
 </div>
 
 <br/>
-
----
 
 ```python
 # ── Identity ──────────────────────────────────────────────────────────
@@ -110,9 +115,35 @@ principle  = [
 
 <br/>
 
+<img src="assets/data-stream.svg" width="100%" alt="Data stream" />
+
+<br/>
+
 ---
 
-### `02 /` Architecture
+### `02 /` Selected Systems
+
+<div align="center">
+
+| System | What it does | Signal |
+| :---: | --- | :---: |
+| [**NPU Fit Checker**](https://github.com/Tusharkapoor-oop/NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis) | Traces which layers silently fall back from NPU → CPU, per execution provider, with evidence-linked diagnosis | **30/30 tests green** |
+| [**AuraControl**](https://github.com/Tusharkapoor-oop/auracontrol-backend) | Real-time gesture engine — MediaPipe landmarks → classifier → FastAPI / WebSocket dispatch loop | **streaming backend** |
+| [**go-bric**](https://github.com/Tusharkapoor-oop/go-bric) | Multi-agent company scouting — five specialist agents collaborating over one shared dataset | **Next.js + Gemini, deployed** |
+
+<sub><sup>…and 8 more systems, auto-listed above ↑</sup></sub>
+
+</div>
+
+<br/>
+
+---
+
+### `03 /` Intelligence Stack
+
+<div align="center">
+  <img src="assets/orbit.svg" width="360" alt="AI core orbiting skills" />
+</div>
 
 ```mermaid
 flowchart LR
@@ -134,12 +165,6 @@ flowchart LR
     style D fill:#0f172a,stroke:#334155,color:#94a3b8
     style E fill:#0f172a,stroke:#334155,color:#94a3b8
 ```
-
-<br/>
-
----
-
-### `03 /` Technical Depth
 
 <div align="center">
   <img src="https://skillicons.dev/icons?i=python,cpp,java,js,ts,mysql&theme=dark&perline=6" alt="Languages" /><br/>
@@ -181,6 +206,12 @@ Deloitte Technology Simulation      ──  Deloitte Australia
 
 <div align="center">
   <img src="profile-3d-contrib/profile-night-view.svg" width="100%" alt="3D Contribution Graph" />
+</div>
+
+<br/>
+
+<div align="center">
+  <img src="dist/github-snake-dark.svg" width="100%" alt="Contribution snake" />
 </div>
 
 <br/>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 440" width="440" height="440" role="img" aria-label="AI core with orbiting skills">
+<defs>
+  <radialGradient id="core" cx="0.5" cy="0.42" r="0.65">
+    <stop offset="0" stop-color="#312e81"/>
+    <stop offset="0.6" stop-color="#1e1b4b"/>
+    <stop offset="1" stop-color="#0f0f1a"/>
+  </radialGradient>
+  <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#6366f1" stop-opacity="0.4"/>
+    <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#22d3ee" stop-opacity="0.8"/>
+    <stop offset="1" stop-color="#c084fc" stop-opacity="0.8"/>
+  </linearGradient>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="3.5" result="b"/>
+    <feMerge>
+      <feMergeNode in="b"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</defs>
+
+<circle cx="220" cy="220" r="170" fill="url(#halo)">
+  <animate attributeName="opacity" values="0.7;1;0.7" dur="5s" repeatCount="indefinite"/>
+</circle>
+
+<g fill="none" stroke="#312e81" stroke-width="1.4" stroke-dasharray="3 7">
+  <g transform="rotate(-16 220 220)">
+    <path d="M30,220 A190,72 0 1,1 410,220 A190,72 0 1,1 30,220"/>
+    <g>
+      <rect x="-38" y="-13" width="76" height="26" rx="13" fill="#0f0f1a" stroke="#4f46e5" stroke-width="1.4"/>
+      <text x="0" y="4.5" text-anchor="middle" font-size="11.5" font-weight="600" fill="#c7d2fe" font-family="'Segoe UI',Helvetica,Arial,sans-serif">Python</text>
+      <animateMotion dur="19s" repeatCount="indefinite" path="M30,220 A190,72 0 1,1 410,220 A190,72 0 1,1 30,220"/>
+    </g>
+    <g>
+      <rect x="-40" y="-13" width="80" height="26" rx="13" fill="#0f0f1a" stroke="#4f46e5" stroke-width="1.4"/>
+      <text x="0" y="4.5" text-anchor="middle" font-size="11.5" font-weight="600" fill="#c7d2fe" font-family="'Segoe UI',Helvetica,Arial,sans-serif">OpenCV</text>
+      <animateMotion dur="19s" begin="-9.5s" repeatCount="indefinite" path="M30,220 A190,72 0 1,1 410,220 A190,72 0 1,1 30,220"/>
+    </g>
+  </g>
+
+  <g transform="rotate(22 220 220)">
+    <path d="M46,220 A174,84 0 1,1 394,220 A174,84 0 1,1 46,220"/>
+    <g>
+      <rect x="-44" y="-13" width="88" height="26" rx="13" fill="#0f0f1a" stroke="#818cf8" stroke-width="1.4"/>
+      <text x="0" y="4.5" text-anchor="middle" font-size="11.5" font-weight="600" fill="#c7d2fe" font-family="'Segoe UI',Helvetica,Arial,sans-serif">PyTorch</text>
+      <animateMotion dur="25s" repeatCount="indefinite" path="M46,220 A174,84 0 1,1 394,220 A174,84 0 1,1 46,220"/>
+    </g>
+    <g>
+      <rect x="-42" y="-13" width="84" height="26" rx="13" fill="#0f0f1a" stroke="#818cf8" stroke-width="1.4"/>
+      <text x="0" y="4.5" text-anchor="middle" font-size="11.5" font-weight="600" fill="#c7d2fe" font-family="'Segoe UI',Helvetica,Arial,sans-serif">FastAPI</text>
+      <animateMotion dur="25s" begin="-12.5s" repeatCount="indefinite" path="M46,220 A174,84 0 1,1 394,220 A174,84 0 1,1 46,220"/>
+    </g>
+  </g>
+
+  <g transform="rotate(64 220 220)">
+    <path d="M62,220 A158,96 0 1,1 378,220 A158,96 0 1,1 62,220"/>
+    <g>
+      <rect x="-40" y="-13" width="80" height="26" rx="13" fill="#0f0f1a" stroke="#c084fc" stroke-width="1.4"/>
+      <text x="0" y="4.5" text-anchor="middle" font-size="11.5" font-weight="600" fill="#e9d5ff" font-family="'Segoe UI',Helvetica,Arial,sans-serif">Agents</text>
+      <animateMotion dur="31s" repeatCount="indefinite" path="M62,220 A158,96 0 1,1 378,220 A158,96 0 1,1 62,220"/>
+    </g>
+    <g>
+      <rect x="-38" y="-13" width="76" height="26" rx="13" fill="#0f0f1a" stroke="#c084fc" stroke-width="1.4"/>
+      <text x="0" y="4.5" text-anchor="middle" font-size="11.5" font-weight="600" fill="#e9d5ff" font-family="'Segoe UI',Helvetica,Arial,sans-serif">Cloud</text>
+      <animateMotion dur="31s" begin="-15.5s" repeatCount="indefinite" path="M62,220 A158,96 0 1,1 378,220 A158,96 0 1,1 62,220"/>
+    </g>
+  </g>
+</g>
+
+<circle cx="220" cy="220" r="64" fill="url(#core)" stroke="url(#ring)" stroke-width="2"/>
+<circle cx="220" cy="220" r="64" fill="none" stroke="#818cf8" stroke-width="1.2">
+  <animate attributeName="r" values="64;150" dur="3.4s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0.7;0" dur="3.4s" repeatCount="indefinite"/>
+</circle>
+<circle cx="220" cy="220" r="64" fill="none" stroke="#22d3ee" stroke-width="1.2">
+  <animate attributeName="r" values="64;150" dur="3.4s" begin="1.7s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="0.7;0" dur="3.4s" begin="1.7s" repeatCount="indefinite"/>
+</circle>
+
+<text x="220" y="216" text-anchor="middle" font-size="34" font-weight="800" fill="#e2e8f0" font-family="'Segoe UI',Helvetica,Arial,sans-serif" filter="url(#glow)">AI</text>
+<text x="220" y="242" text-anchor="middle" font-size="10.5" letter-spacing="4" fill="#818cf8" font-family="Consolas,'Cascadia Code',monospace">CORE</text>
+</svg>
