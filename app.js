@@ -16,7 +16,7 @@ const FALLBACK = () => {
 
 let THREE;
 try {
-  THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+  THREE = await import('three');
 } catch (err) {
   console.error('COGNITUM: three.js failed to load', err);
   FALLBACK();
@@ -91,9 +91,32 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 300);
 camera.position.set(0, 0.4, 14.5);
 
+/* ================= post: bloom + afterimage trails ================= */
+let composer = null, bloomPass = null;
+if (!isMobile) {
+  try {
+    const [pc, pr, pb, pa, po] = await Promise.all([
+      import('three/addons/postprocessing/EffectComposer.js'),
+      import('three/addons/postprocessing/RenderPass.js'),
+      import('three/addons/postprocessing/UnrealBloomPass.js'),
+      import('three/addons/postprocessing/AfterimagePass.js'),
+      import('three/addons/postprocessing/OutputPass.js'),
+    ]);
+    composer = new pc.EffectComposer(renderer);
+    composer.addPass(new pr.RenderPass(scene, camera));
+    bloomPass = new pb.UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.5, 0.4, 0.72);
+    composer.addPass(bloomPass);
+    composer.addPass(new pa.AfterimagePass(0.72));
+    composer.addPass(new po.OutputPass());
+    composer.setSize(innerWidth, innerHeight);
+    composer.setPixelRatio(renderer.getPixelRatio());
+  } catch (err) {
+    console.warn('COGNITUM: post-processing disabled', err);
+    composer = null; bloomPass = null;
+  }
+}
+
 /* ================= background: Born-rule density |ψ|² ================= */
-const bgScene = new THREE.Scene();
-const bgCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 const bgUniforms = {
   uTime: { value: 0 },
   uMouse: { value: new THREE.Vector2(0, 0) },
@@ -137,7 +160,7 @@ const bgMat = new THREE.ShaderMaterial({
       /* measurement: cursor is a detector — Born rule concentrates locally */
       vec2 m = uMouse * vec2(1.75, 1.0) * 5.2;
       float d2 = dot(x - m, x - m);
-      I *= 1.0 + 2.6 * exp(-d2 * 0.055);
+      I *= 1.0 + 1.7 * exp(-d2 * 0.055);
 
       /* palette: deep space -> indigo fringes -> cyan interference */
       vec3 deep = vec3(0.012, 0.012, 0.04);
@@ -146,8 +169,8 @@ const bgMat = new THREE.ShaderMaterial({
 
       vec3 col = deep;
       col += indigo * smoothstep(0.05, 0.9, I);
-      col += cyan * pow(smoothstep(0.5, 2.4, I), 2.0) * 0.85;
-      col += vec3(0.55, 0.3, 0.9) * pow(smoothstep(1.4, 4.2, I), 3.0) * 0.7;
+      col += cyan * pow(smoothstep(0.5, 2.4, I), 2.0) * 0.45;
+      col += vec3(0.55, 0.3, 0.9) * pow(smoothstep(1.4, 4.2, I), 3.0) * 0.35;
 
       /* fringe contours: iso-I bands */
       float band = abs(fract(I * 1.7) - 0.5);
@@ -156,11 +179,14 @@ const bgMat = new THREE.ShaderMaterial({
       col *= 1.0 - 0.45 * length(vUv - 0.5);
       col += (hash(vUv * vec2(uTime * 60.0, uTime * 47.0)) - 0.5) * 0.026;
 
-      gl_FragColor = vec4(col, 1.0);
+      gl_FragColor = vec4(col * 0.42, 1.0);
     }
   `,
 });
-bgScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), bgMat));
+const bgMesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), bgMat);
+bgMesh.frustumCulled = false;
+bgMesh.renderOrder = -999;
+scene.add(bgMesh);
 
 /* ================= glow sprite texture ================= */
 function glowTexture() {
@@ -178,6 +204,34 @@ function glowTexture() {
   return tex;
 }
 const glowTex = glowTexture();
+
+/* ================= star dust (depth layer) + core pulse ================= */
+const dustGroup = new THREE.Group();
+scene.add(dustGroup);
+{
+  const DUST = isMobile ? 500 : 1100;
+  const dp = new Float32Array(DUST * 3);
+  for (let i = 0; i < DUST; i++) {
+    const r = 22 + Math.random() * 46;
+    const th = Math.random() * Math.PI * 2;
+    const ph = Math.acos(2 * Math.random() - 1);
+    dp[i * 3] = r * Math.sin(ph) * Math.cos(th);
+    dp[i * 3 + 1] = r * Math.sin(ph) * Math.sin(th) * 0.7;
+    dp[i * 3 + 2] = r * Math.cos(ph);
+  }
+  const dg = new THREE.BufferGeometry();
+  dg.setAttribute('position', new THREE.BufferAttribute(dp, 3));
+  dustGroup.add(new THREE.Points(dg, new THREE.PointsMaterial({
+    size: 0.55, map: glowTex, color: 0x7f9cf5, transparent: true, opacity: 0.4,
+    depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true,
+  })));
+}
+const coreGlow = new THREE.Sprite(new THREE.SpriteMaterial({
+  map: glowTex, color: 0x67e8f9, transparent: true, opacity: 0.0,
+  blending: THREE.AdditiveBlending, depthWrite: false,
+}));
+coreGlow.scale.setScalar(2.6);
+scene.add(coreGlow);
 
 /* ================= normalizing-flow particle field ================= */
 const flow = new Flow(0x5eed1234);
@@ -277,7 +331,7 @@ let flowPoints = null;
       void main(){
         float d = length(gl_PointCoord - 0.5);
         float a = smoothstep(0.5, 0.08, d);
-        a *= mix(0.42, uOpacity, vTitle);
+        a *= mix(0.3, uOpacity, vTitle);
         if (a < 0.01) discard;
         gl_FragColor = vec4(mix(uColA, uColB, vMix), a);
       }
@@ -357,11 +411,13 @@ const line4 = makeHexLines(hex.e4, 0xc084fc, 0.24); /* 4D section shadow (tesser
 {
   const g = new THREE.BufferGeometry();
   g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(64 * 3), 3).setUsage(THREE.DynamicDrawUsage));
-  hexGroup.add(new THREE.Points(g, new THREE.PointsMaterial({
-    size: 0.5, map: glowTex, color: 0xa5b4fc, transparent: true, opacity: 0.95,
+  const vertMat = new THREE.PointsMaterial({
+    size: 0.26, map: glowTex, color: 0xa5b4fc, transparent: true, opacity: 0.55,
     depthWrite: false, blending: THREE.AdditiveBlending,
-  })));
+  });
+  hexGroup.add(new THREE.Points(g, vertMat));
   hexGroup.userData.vertPoints = g;
+  hexGroup.userData.vertMat = vertMat;
 }
 const COL_A = new THREE.Color('#22d3ee'), COL_B = new THREE.Color('#c084fc'), _c = new THREE.Color();
 
@@ -647,6 +703,9 @@ const sections = [...document.querySelectorAll('section')].map((el) => ({
   el, in: parseFloat(el.dataset.in), out: parseFloat(el.dataset.out), t: 0,
 }));
 const navBtns = [...document.querySelectorAll('#layerNav button')];
+const railFillEl = document.getElementById('railFill');
+const legendRows = [...document.querySelectorAll('#shellLegend .lg-row')];
+const cursorGlowEl = document.getElementById('cursorGlow');
 const fpsEl = document.getElementById('fps');
 const logpEl = document.getElementById('logp');
 const hentEl = document.getElementById('hent');
@@ -664,10 +723,13 @@ function updateSections(p) {
     s.t = fade;
     s.el.style.opacity = fade.toFixed(3);
     s.el.style.transform = `translate(-50%, ${(baseY + (1 - fade) * 6).toFixed(2)}%)`;
-    s.el.classList.toggle('on', fade > 0.35);
+    s.el.classList.toggle('on', fade > 0.35 && loaderHidden);
     if (fade > 0.5) activeIdx = i;
   });
   navBtns.forEach((b, i) => b.classList.toggle('active', i === activeIdx));
+  railFillEl.style.transform = `scaleY(${p.toFixed(4)})`;
+  const activeShell = p < 0.38 ? '6' : (p < 0.66 ? '5' : '4');
+  legendRows.forEach((r) => r.classList.toggle('active', r.dataset.shell === activeShell));
   if (activeIdx !== layerIdx) { layerIdx = activeIdx; stateEl.textContent = ROLES[activeIdx]; }
 }
 
@@ -691,7 +753,7 @@ function tick() {
   const dt = Math.min(clock.getDelta(), 0.05);
   const t = clock.elapsedTime;
 
-  cur += (target - cur) * Math.min(1, dt * 3.4);
+  cur += (target - cur) * (1 - Math.exp(-dt * 4.2));
   const p = cur;
 
   mouseSmX.v = lerp(mouseSmX.v, mouseN.x, dt * 4);
@@ -710,11 +772,19 @@ function tick() {
 
   /* hexeract: shadow brightness rises with depth of descent */
   updateHex(t);
-  line5.material.opacity = 0.16 + 0.2 * sstep(0.1, 0.5, p);
-  line4.material.opacity = 0.12 + 0.18 * sstep(0.3, 0.8, p);
-  line6.material.opacity = 0.9 - 0.35 * sstep(0.2, 0.9, p);
-  hexGroup.rotation.y = Math.sin(t * 0.12) * 0.15;
-  hexGroup.rotation.x = Math.cos(t * 0.09) * 0.1;
+  const breathe = 1 + 0.08 * Math.sin(t * 1.6);
+  line5.material.opacity = (0.18 + 0.26 * sstep(0.1, 0.5, p)) * breathe;
+  line4.material.opacity = (0.14 + 0.24 * sstep(0.3, 0.8, p)) * breathe;
+  line6.material.opacity = (0.95 - 0.35 * sstep(0.2, 0.9, p)) * breathe;
+  hexGroup.rotation.y = Math.sin(t * 0.14) * (0.2 + p * 0.35);
+  hexGroup.rotation.x = Math.cos(t * 0.11) * (0.12 + p * 0.2);
+  hexGroup.userData.vertMat.size = 0.26 + 0.08 * Math.sin(t * 2.3);
+
+  /* atmosphere layers */
+  dustGroup.rotation.y = t * 0.008;
+  dustGroup.rotation.x = Math.sin(t * 0.05) * 0.05;
+  coreGlow.material.opacity = (0.22 + 0.1 * Math.sin(t * 1.9)) * (1 - sstep(0.3, 0.7, p));
+  if (bloomPass) bloomPass.strength = 0.45 + 0.08 * Math.sin(t * 0.5) + 0.12 * sstep(0.4, 0.55, p);
 
   /* memory cells in D2 */
   const sp = sstep(0.40, 0.47, p) * (1 - sstep(0.68, 0.74, p));
@@ -767,6 +837,9 @@ function tick() {
   });
 
   cameraAt(p, mouseSmX.v, mouseSmY.v);
+  camera.rotateZ(Math.sin(t * 0.09) * 0.045 + (mouseSmX.v * 0.02));
+  cursorGlowEl.style.transform =
+    `translate3d(${((mouseSmX.v + 1) / 2 * innerWidth).toFixed(1)}px,${((1 - mouseSmY.v) / 2 * innerHeight).toFixed(1)}px,0)`;
   updateSections(p);
 
   frames++;
@@ -775,14 +848,13 @@ function tick() {
     frames = 0; lastFpsAt = t;
   }
 
-  renderer.clear();
-  renderer.render(bgScene, bgCam);
-  renderer.clearDepth();
-  renderer.render(scene, camera);
+  if (composer) composer.render(dt);
+  else { renderer.clear(); renderer.render(scene, camera); }
 
-  if (!loaderHidden && t > 0.9) {
+  if (!loaderHidden && t > (document.body.classList.contains('snap') ? 0.05 : 0.9)) {
     loaderHidden = true;
     document.getElementById('loader').classList.add('done');
+    document.body.classList.add('booted');
   }
   requestAnimationFrame(tick);
 }
@@ -794,11 +866,18 @@ addEventListener('resize', () => {
   renderer.setSize(innerWidth, innerHeight);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   titleUniforms.uPixel.value = renderer.getPixelRatio();
+  if (composer) {
+    composer.setPixelRatio(renderer.getPixelRatio());
+    composer.setSize(innerWidth, innerHeight);
+    if (bloomPass) bloomPass.resolution.set(innerWidth, innerHeight);
+  }
 });
 
 /* ================= go ================= */
+const pParam = location.search.match(/[?&]p=([\d.]+)/);
+if (pParam) { const v = parseFloat(pParam[1]); if (isFinite(v)) { target = v; cur = v; } document.body.classList.add('snap'); }
 console.log('%c COGNITUM 6D ', 'background:#4f46e5;color:#fff;font-size:16px',
-  `SO(6)·flow·HRR(D=${HV_D}) — you inspect like an engineer.`);
+  `v3 — SO(6)·flow·HRR(D=${HV_D})·${composer ? 'bloom+afterimage' : 'direct'} — you inspect like an engineer.`);
 updateAttention();
 sampleLogP(0);
 requestAnimationFrame(tick);

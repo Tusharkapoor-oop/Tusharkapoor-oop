@@ -151,5 +151,19 @@
 </div>
 
 <script type="module" src="app.js"></script>
+<script>
+setTimeout(() => {
+  try {
+    const nav = document.getElementById('layerNav'), lg = document.getElementById('shellLegend');
+    const cN = getComputedStyle(nav), cL = getComputedStyle(lg);
+    const rN = nav.getBoundingClientRect(), rL = lg.getBoundingClientRect();
+    console.log('PROBE' + JSON.stringify({
+      body: document.body.className,
+      nav: { op: cN.opacity, vis: cN.visibility, disp: cN.display, anim: cN.animationName + '/' + cN.animationDelay + '/' + cN.animationPlayState, rect: [rN.x|0,rN.y|0,rN.width|0,rN.height|0].join(','), cls: nav.className },
+      lg: { op: cL.opacity, vis: cL.visibility, disp: cL.display, rect: [rL.x|0,rL.y|0,rL.width|0,rL.height|0].join(','), cls: lg.className }
+    }));
+  } catch (e) { console.log('PROBEERR ' + e.message); }
+}, 14000);
+</script>
 </body>
 </html>

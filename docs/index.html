@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tushar Kapoor — AI/ML Engineer. Computer Vision, Intelligent Systems, Cloud AI." />
+  <title>Tushar Kapoor · AI/ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #050508;
+      --surface:  #0c0c14;
+      --border:   #1a1a2e;
+      --accent:   #4f46e5;
+      --accent2:  #6366f1;
+      --muted:    #374151;
+      --text:     #e2e8f0;
+      --sub:      #64748b;
+      --mono:     'JetBrains Mono', monospace;
+      --sans:     'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
+
+    /* ── CANVAS ─────────────────────────────────────── */
+    #canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.35;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
+
+    /* ── NAV ────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(5,5,8,0.7);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--sub);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ───────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding: 8rem 0 5rem;
+    }
+
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-name .accent { color: var(--accent); }
+
+    .hero-subtitle {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--sub);
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    #typewriter {
+      display: inline;
+      color: var(--accent2);
+    }
+
+    #cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: var(--accent);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      padding: 0.6rem 1.4rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--sub);
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+
+    .btn:hover, .btn-primary:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      background: rgba(79,70,229,0.08);
+    }
+
+    .btn-primary {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      padding: 0.6rem 1.4rem;
+      border: 1px solid var(--accent);
+      background: rgba(79,70,229,0.12);
+      color: var(--accent2);
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    /* ── SECTION HEADERS ─────────────────────────────── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+      color: var(--text);
+    }
+
+    /* ── ENGINEERING ─────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .project-card {
+      background: var(--bg);
+      padding: 2rem;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px;
+      height: 0;
+      background: var(--accent);
+      transition: height 0.3s ease;
+    }
+
+    .project-card:hover { background: var(--surface); }
+    .project-card:hover::before { height: 100%; }
+
+    .project-kind {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .project-name a { color: inherit; text-decoration: none; }
+    .project-name a:hover { color: var(--accent2); }
+
+    .project-problem {
+      font-size: 0.8rem;
+      color: var(--sub);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .project-pipeline {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .project-pipeline .arrow { color: var(--accent); }
+
+    .project-decision {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--sub);
+      border-left: 2px solid var(--accent);
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--border);
+      color: var(--sub);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── DEPTH ───────────────────────────────────────── */
+    .depth-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .depth-card {
+      background: var(--bg);
+      padding: 1.5rem;
+    }
+
+    .depth-category {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+
+    .depth-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .depth-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .depth-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--sub);
+      width: 100px;
+      flex-shrink: 0;
+    }
+
+    .depth-bar-bg {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      position: relative;
+    }
+
+    .depth-bar-fill {
+      position: absolute;
+      top: 0; left: 0; height: 100%;
+      background: var(--accent);
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0;
+    }
+
+    /* ── PROOF ───────────────────────────────────────── */
+    .proof-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .proof-item {
+      background: var(--bg);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 2rem;
+      align-items: baseline;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+    }
+
+    .proof-marker { color: var(--accent); flex-shrink: 0; }
+    .proof-event { color: var(--text); flex: 1; }
+    .proof-result { color: var(--sub); text-align: right; flex-shrink: 0; }
+
+    /* ── CONTACT ─────────────────────────────────────── */
+    .contact-block {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--sub);
+      line-height: 2.2;
+    }
+
+    .contact-block a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+
+    .contact-block a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── UTILS ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 600px) {
+      .proof-item { flex-direction: column; gap: 0.25rem; }
+      .proof-result { text-align: left; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<nav>
+  <div class="nav-logo">TK // AI-ML</div>
+  <ul class="nav-links">
+    <li><a href="#engineering">engineering</a></li>
+    <li><a href="#depth">depth</a></li>
+    <li><a href="#proof">proof</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-label">TUSHAR KAPOOR // AI-ML ENGINEER // GURUGRAM, INDIA</p>
+      <h1 class="hero-name">Building<br/><span class="accent">intelligent</span><br/>systems.</h1>
+      <p class="hero-subtitle">
+        <span id="typewriter"></span><span id="cursor"></span><br/><br/>
+        B.Tech CSE (AI &amp; ML) · K.R. Mangalam University<br/>
+        Computer Vision · Cloud AI · Generative Systems
+      </p>
+      <div class="hero-links">
+        <a class="btn-primary" href="https://github.com/Tusharkapoor-oop" target="_blank">github_profile</a>
+        <a class="btn" href="https://www.linkedin.com/in/tushar-kapoor-143484333/" target="_blank">linkedin</a>
+        <a class="btn" href="https://leetcode.com/u/tusharkapoor66/" target="_blank">leetcode</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINEERING -->
+  <section id="engineering">
+    <div class="container">
+      <p class="section-label reveal">01 / ENGINEERING</p>
+      <h2 class="section-title reveal">Selected Work</h2>
+      <div class="projects-grid">
+
+        <div class="project-card reveal">
+          <p class="project-kind">COMPUTER VISION · INTERFACE</p>
+          <h3 class="project-name">
+            <a href="https://github.com/Tusharkapoor-oop/Advance_hand_gesture" target="_blank">AuraControl</a>
+          </h3>
+          <p class="project-problem">
+            Universal contactless computer interaction. A camera-first interface that eliminates physical device dependency by translating hand geometry into context-aware OS commands.
+          </p>
+          <div class="project-pipeline">
+            Camera <span class="arrow">→</span> OpenCV Frame <span class="arrow">→</span> MediaPipe (21 keypoints) <span class="arrow">→</span><br/>
+            Geometric Classifier <span class="arrow">→</span> Context State Machine <span class="arrow">→</span><br/>
+            Action Dispatcher <span class="arrow">←</span> WebSocket <span class="arrow">←</span> React HUD
+          </div>
+          <div class="project-decision">
+            Decision: Algebraic geometry over neural inference.<br/>
+            Rationale: Sub-ms classification. No training data dependency.
+          </div>
+          <div class="project-stack">
+            <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">MediaPipe</span>
+            <span class="tag">FastAPI</span><span class="tag">WebSocket</span><span class="tag">React</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <p class="project-kind">CLOUD AI · MACHINE LEARNING</p>
+          <h3 class="project-name">
+            <a href="https://github.com/Tusharkapoor-oop/IBM-Cloud-project" target="_blank">Predictive Maintenance System</a>
+          </h3>
+          <p class="project-problem">
+            Industrial machine failure forecasting. Sensor telemetry is analyzed incrementally using IBM Watsonx.ai Runtime to predict specific failure types before downtime occurs.
+          </p>
+          <div class="project-pipeline">
+            Sensor CSV <span class="arrow">→</span> DataLoader (batch) <span class="arrow">→</span> AutoAI Selection <span class="arrow">→</span><br/>
+            BatchedTreeEnsembleClassifier <span class="arrow">→</span> partial_fit (incremental) <span class="arrow">→</span><br/>
+            Watsonx Runtime <span class="arrow">→</span> REST API endpoint
+          </div>
+          <div class="project-decision">
+            Decision: Incremental learning (partial_fit) over full retrain.<br/>
+            Rationale: Sensors stream continuously. Full retrain is indefensible.
+          </div>
+          <div class="project-stack">
+            <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">SnapML</span>
+            <span class="tag">IBM Watsonx.ai</span><span class="tag">lale</span><span class="tag">AutoAI</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPTH -->
+  <section id="depth">
+    <div class="container">
+      <p class="section-label reveal">02 / TECHNICAL DEPTH</p>
+      <h2 class="section-title reveal">Skill Matrix</h2>
+      <div class="depth-grid">
+
+        <div class="depth-card reveal">
+          <p class="depth-category">LANGUAGES</p>
+          <div class="depth-items">
+            <div class="depth-item">
+              <span class="depth-label">Python</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="90"></div></div>
+            </div>
+            <div class="depth-item">
+              <span class="depth-label">C++</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="70"></div></div>
+            </div>
+            <div class="depth-item">
+              <span class="depth-label">Java</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="65"></div></div>
+            </div>
+            <div class="depth-item">
+              <span class="depth-label">JavaScript</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="60"></div></div>
+            </div>
+            <div class="depth-item">
+              <span class="depth-label">SQL</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="72"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="depth-card reveal">
+          <p class="depth-category">AI / ML / VISION</p>
+          <div class="depth-items">
+            <div class="depth-item">
+              <span class="depth-label">Machine Learning</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="80"></div></div>
+            </div>
+            <div class="depth-item">
+              <span class="depth-label">Computer Vision</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="75"></div></div>
+            </div>
+            <div class="depth-item">
+              <span class="depth-label">Data Analytics</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="70"></div></div>
+            </div>
+            <div class="depth-item">
+              <span class="depth-label">AI Agents</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="65"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="depth-card reveal">
+          <p class="depth-category">ENGINEERING</p>
+          <div class="depth-items">
+            <div class="depth-item">
+              <span class="depth-label">DSA</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="78"></div></div>
+            </div>
+            <div class="depth-item">
+              <span class="depth-label">OOP / Systems</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="75"></div></div>
+            </div>
+            <div class="depth-item">
+              <span class="depth-label">APIs / WebSockets</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="72"></div></div>
+            </div>
+            <div class="depth-item">
+              <span class="depth-label">Cloud (IBM/Azure)</span>
+              <div class="depth-bar-bg"><div class="depth-bar-fill" data-w="68"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section id="proof">
+    <div class="container">
+      <p class="section-label reveal">03 / PROOF</p>
+      <h2 class="section-title reveal">Evidence</h2>
+      <div class="proof-list">
+        <div class="proof-item reveal">
+          <span class="proof-marker">//</span>
+          <span class="proof-event">GO BRICS International Internship</span>
+          <span class="proof-result">1st Place · LoR</span>
+        </div>
+        <div class="proof-item reveal">
+          <span class="proof-marker">//</span>
+          <span class="proof-event">GO BRICS International Hackathon</span>
+          <span class="proof-result">Qualified</span>
+        </div>
+        <div class="proof-item reveal">
+          <span class="proof-marker">//</span>
+          <span class="proof-event">Dean's Honour Award · K.R. Mangalam University</span>
+          <span class="proof-result">Academic</span>
+        </div>
+        <div class="proof-item reveal">
+          <span class="proof-marker">//</span>
+          <span class="proof-event">Azure AI Fundamentals · Microsoft</span>
+          <span class="proof-result">Certified</span>
+        </div>
+        <div class="proof-item reveal">
+          <span class="proof-marker">//</span>
+          <span class="proof-event">Cisco Cybersecurity · Cisco Networking Academy</span>
+          <span class="proof-result">Certified</span>
+        </div>
+        <div class="proof-item reveal">
+          <span class="proof-marker">//</span>
+          <span class="proof-event">IBM SkillsBuild AI &amp; Cloud · Edunet / IBM</span>
+          <span class="proof-result">Certified</span>
+        </div>
+        <div class="proof-item reveal">
+          <span class="proof-marker">//</span>
+          <span class="proof-event">Deloitte Technology Simulation · Deloitte Australia</span>
+          <span class="proof-result">Completed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label reveal">04 / CONTACT</p>
+      <h2 class="section-title reveal">Connect</h2>
+      <div class="contact-block reveal">
+        github   <a href="https://github.com/Tusharkapoor-oop" target="_blank">github.com/Tusharkapoor-oop</a><br/>
+        linkedin <a href="https://www.linkedin.com/in/tushar-kapoor-143484333/" target="_blank">linkedin.com/in/tushar-kapoor-143484333</a><br/>
+        leetcode <a href="https://leetcode.com/u/tusharkapoor66/" target="_blank">leetcode.com/u/tusharkapoor66</a><br/><br/>
+        open_to  <span style="color:var(--sub)">internships · hackathons · research collaboration</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  TUSHAR KAPOOR &nbsp;·&nbsp; AI/ML ENGINEER &nbsp;·&nbsp; GURUGRAM, INDIA &nbsp;·&nbsp;
+  <a href="https://github.com/Tusharkapoor-oop" style="color:var(--muted)">github.com/Tusharkapoor-oop</a>
+</footer>
+
+<script>
+/* ── NEURAL NETWORK PARTICLE CANVAS ────────────────── */
+const canvas = document.getElementById('canvas');
+const ctx    = canvas.getContext('2d');
+
+let W, H, nodes = [], animId;
+
+const ACCENT = '79,70,229';
+const NODE_COUNT = 60;
+const CONNECTION_DIST = 150;
+
+function resize() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+
+function initNodes() {
+  nodes = Array.from({ length: NODE_COUNT }, () => ({
+    x:  Math.random() * W,
+    y:  Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4,
+    r:  Math.random() * 1.5 + 0.5,
+    pulse: Math.random() * Math.PI * 2,
+  }));
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Update
+  nodes.forEach(n => {
+    n.x += n.vx; n.y += n.vy; n.pulse += 0.02;
+    if (n.x < 0 || n.x > W) n.vx *= -1;
+    if (n.y < 0 || n.y > H) n.vy *= -1;
+  });
+
+  // Connections
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const d  = Math.sqrt(dx * dx + dy * dy);
+      if (d < CONNECTION_DIST) {
+        const alpha = (1 - d / CONNECTION_DIST) * 0.35;
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(${ACCENT},${alpha})`;
+        ctx.lineWidth   = 0.5;
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  // Nodes
+  nodes.forEach(n => {
+    const pulse = (Math.sin(n.pulse) + 1) / 2;
+    const r = n.r + pulse * 0.8;
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${ACCENT},${0.4 + pulse * 0.4})`;
+    ctx.fill();
+  });
+
+  animId = requestAnimationFrame(draw);
+}
+
+resize();
+initNodes();
+draw();
+window.addEventListener('resize', () => { resize(); initNodes(); });
+
+/* ── TYPEWRITER ─────────────────────────────────────── */
+const phrases = [
+  'gesture → landmark → classify → dispatch → execute',
+  'telemetry → pipeline → partial_fit → inference → alert',
+  'problem → architecture → decision → implementation → proof',
+  'sensor → model → prediction → REST API → production',
+];
+let pi = 0, ci = 0, deleting = false, wait = 0;
+const el = document.getElementById('typewriter');
+
+function type() {
+  const phrase = phrases[pi];
+  if (!deleting) {
+    el.textContent = phrase.slice(0, ++ci);
+    if (ci === phrase.length) { deleting = true; wait = 60; }
+    setTimeout(type, 45);
+  } else {
+    if (wait-- > 0) { setTimeout(type, 20); return; }
+    el.textContent = phrase.slice(0, --ci);
+    if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+    setTimeout(type, 25);
+  }
+}
+type();
+
+/* ── REVEAL ON SCROLL ────────────────────────────────── */
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
+  { threshold: 0.12 }
+);
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ── SKILL BARS ──────────────────────────────────────── */
+const barObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.depth-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.w + '%';
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.depth-card').forEach(c => barObserver.observe(c));
+</script>
+</body>
+</html>

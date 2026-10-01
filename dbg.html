@@ -1,0 +1,36 @@
+<!doctype html>
+<html><body style="background:#000;color:#0f0;font:12px monospace;white-space:pre" id="out">pending</iframe>
+<script>
+const f = document.createElement('iframe');
+f.style = 'position:absolute;left:-9999px;width:1600px;height:1300px';
+f.src = './?p=0';
+document.body.appendChild(f);
+setTimeout(() => {
+  try {
+    const d = f.contentDocument, w = f.contentWindow;
+    const rows = [];
+    d.querySelectorAll('#s0 .stagger, #s0 h1, .hero-links a').forEach(el => {
+      const cs = w.getComputedStyle(el);
+      const r = el.getBoundingClientRect();
+      rows.push({
+        cls: el.className,
+        tag: el.tagName,
+        op: cs.opacity, vis: cs.visibility, disp: cs.display,
+        col: cs.color, bg: cs.backgroundColor,
+        tr: cs.transform, filt: cs.filter,
+        bdf: cs.backdropFilter, bd: cs.border, ov: cs.overflow,
+        z: cs.zIndex,
+        rect: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)].join(','),
+        txt: (el.textContent || '').trim().slice(0, 30)
+      });
+    });
+    const sec = d.querySelector('#s0');
+    const cs = w.getComputedStyle(sec), r = sec.getBoundingClientRect();
+    rows.push({ cls: 'SECTION s0', op: cs.opacity, vis: cs.visibility, cl: sec.className, rect: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)].join(','), txt: 'bodyCls=' + d.body.className });
+    const js = JSON.stringify(rows);
+    console.log('DBGJSON' + js);
+    document.getElementById('out').textContent = JSON.stringify(rows, null, 1);
+  } catch (e) { console.log('DBGERR ' + e.message); }
+}, 9000);
+</script>
+</body></html>
