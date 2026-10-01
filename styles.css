@@ -458,7 +458,7 @@ body.booted .hero-title span:nth-child(8) { animation-delay: 0.74s; }
 .hero-links.big a { font-size: 14.5px; padding: 16px 32px; }
 
 .cue {
-  margin-top: 5.5vh;
+  margin-top: 2.5vh;
   font-size: 11px;
   letter-spacing: 6px;
   color: var(--dim);
