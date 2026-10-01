@@ -48,33 +48,39 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Advance_hand_gesture                 JavaScript     Vision          4★  today
-                                       └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
-  auracontrol-backend                  TypeScript     Vision          4★  today
-                                       └─ Real-time hand-gesture recognition backend (AuraControl) - F..
-  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            4★  today
-                                       └─ Netflix and Airbnb data analysis - EDA notebooks, decks, and..
+  Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  today
+                                       └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
   OS_LAB_Linux_Ubantu                  Python         Backend         4★  today
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
-  go-bric                              TypeScript     Frontend        4★  today
+  Advance_hand_gesture                 JavaScript     Vision          4★  yesterday
+                                       └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
+  auracontrol-backend                  TypeScript     Vision          4★  yesterday
+                                       └─ Real-time hand-gesture recognition backend (AuraControl) - F..
+  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            4★  yesterday
+                                       └─ Netflix and Airbnb data analysis - EDA notebooks, decks, and..
+  go-bric                              TypeScript     Frontend        4★  yesterday
                                        └─ Multi-agent company scouting on Next.js and Gemini - five sp..
-  ReflectAI                            Jupyter Notebook Engineering     4★  today
+  ReflectAI                            Jupyter Notebook Engineering     4★  yesterday
                                        └─ Deterministic end-of-day reflection tool - structured conver..
-  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           4★  today
+  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           4★  yesterday
                                        └─ Crop recommendation from soil/climate features - full ML pip..
-  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         6★  today
+  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         6★  yesterday
                                        └─ This project is an AI-based Study Planner designed to help s..
-  Kapoor-portfolio                     TypeScript     Frontend        1★  today
+  Kapoor-portfolio                     TypeScript     Frontend        1★  yesterday
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
-  NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     4★  today
+  NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     4★  yesterday
                                        └─ Automated NPU fallback diagnosis - find which layers fell ba..
-  IBM-Cloud-project                    Jupyter Notebook AI/ML           4★  today
-                                       └─ Predictive maintenance on IBM Cloud / Watsonx - Jupyter ML p..
 ```
 
 <details>
 <summary><sub>View repository links</sub></summary>
 <br/>
+
+**[Tusharkapoor-oop.github.io](https://github.com/Tusharkapoor-oop/Tusharkapoor-oop.github.io)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
+<br/><sub>COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, zero frameworks)</sub>
+
+**[OS_LAB_Linux_Ubantu](https://github.com/Tusharkapoor-oop/OS_LAB_Linux_Ubantu)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 4
+<br/><sub>Operating Systems lab in Python - system calls, CPU scheduling, synchronization, memory, file systems.</sub>
 
 **[Advance_hand_gesture](https://github.com/Tusharkapoor-oop/Advance_hand_gesture)** &nbsp;·&nbsp; `Vision` &nbsp;·&nbsp; ⭐ 4
 <br/><sub>Real-time hand-gesture recognition - MediaPipe landmarks, TensorFlow classifier, browser demo</sub>
@@ -84,9 +90,6 @@ principle  = [
 
 **[VOIS_AICTE_Oct2025_TUSHAR-KAPOOR](https://github.com/Tusharkapoor-oop/VOIS_AICTE_Oct2025_TUSHAR-KAPOOR)** &nbsp;·&nbsp; `Data` &nbsp;·&nbsp; ⭐ 4
 <br/><sub>Netflix and Airbnb data analysis - EDA notebooks, decks, and course materials.</sub>
-
-**[OS_LAB_Linux_Ubantu](https://github.com/Tusharkapoor-oop/OS_LAB_Linux_Ubantu)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 4
-<br/><sub>Operating Systems lab in Python - system calls, CPU scheduling, synchronization, memory, file systems.</sub>
 
 **[go-bric](https://github.com/Tusharkapoor-oop/go-bric)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 4
 <br/><sub>Multi-agent company scouting on Next.js and Gemini - five specialist agents over a shared dataset.</sub>
@@ -106,12 +109,9 @@ principle  = [
 **[NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis](https://github.com/Tusharkapoor-oop/NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
 <br/><sub>Automated NPU fallback diagnosis - find which layers fell back to CPU, on which target, and why.</sub>
 
-**[IBM-Cloud-project](https://github.com/Tusharkapoor-oop/IBM-Cloud-project)** &nbsp;·&nbsp; `AI/ML` &nbsp;·&nbsp; ⭐ 4
-<br/><sub>Predictive maintenance on IBM Cloud / Watsonx - Jupyter ML pipeline with training and evaluation notebooks</sub>
-
 </details>
 
-<sub><sup>↻ auto-updated · 2026-09-30 16:25 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-01 15:52 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
