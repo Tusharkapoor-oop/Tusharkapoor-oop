@@ -800,4 +800,5 @@ addEventListener('resize', () => {
 console.log('%c COGNITUM 6D ', 'background:#4f46e5;color:#fff;font-size:16px',
   `SO(6)·flow·HRR(D=${HV_D}) — you inspect like an engineer.`);
 updateAttention();
+sampleLogP(0);
 requestAnimationFrame(tick);
