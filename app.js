@@ -138,9 +138,35 @@ const bgMat = new THREE.ShaderMaterial({
     uniform float uScroll;
 
     float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+    float vnoise(vec2 p){
+      vec2 i = floor(p), f = fract(p);
+      f = f * f * (3.0 - 2.0 * f);
+      return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+                 mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+    }
+    float fbm(vec2 p){
+      float v = 0.0, a = 0.5;
+      for (int i = 0; i < 4; i++){ v += a * vnoise(p); p = p * 2.03 + vec2(17.3, 9.1); a *= 0.5; }
+      return v;
+    }
+    /* one parallax star shell: jittered cells, gaussian points, twinkle, tint */
+    vec3 starLayer(vec2 uv, float scale, float density, float sharp, float t, float seed){
+      vec2 p = uv * scale;
+      vec2 id = floor(p), f = fract(p);
+      float rnd = hash(id + seed);
+      float on = step(1.0 - density, rnd);
+      vec2 sp = vec2(hash(id + seed + 11.7), hash(id + seed + 27.3)) * 0.8 + 0.1;
+      float d = length(f - sp);
+      float tw = 0.55 + 0.45 * sin(t * (1.2 + 2.6 * hash(id + seed + 3.1)) + rnd * 40.0);
+      vec3 tint = mix(vec3(1.0, 0.94, 0.88), vec3(0.78, 0.88, 1.0), fract(rnd * 7.13));
+      float mag = 0.6 + 0.7 * hash(id + seed + 7.7);
+      return tint * on * exp(-d * d * sharp) * tw * mag;
+    }
 
     void main(){
-      vec2 x = (vUv - 0.5) * vec2(1.75, 1.0) * 5.2;
+      vec2 asp = vec2(1.75, 1.0);
+      vec2 suv = (vUv - 0.5) * asp;
+      vec2 x = suv * 5.2;
 
       /* psi = sum_k a_k exp(i (k_k . x - w_k t)) : 7-mode superposition */
       vec2 psi = vec2(0.0);
@@ -154,32 +180,49 @@ const bgMat = new THREE.ShaderMaterial({
         float phase = dot(dir, x) * freq - w * uTime;
         psi += amp * vec2(cos(phase), sin(phase));
       }
-
       float I = dot(psi, psi) / 6.0;
 
       /* measurement: cursor is a detector — Born rule concentrates locally */
-      vec2 m = uMouse * vec2(1.75, 1.0) * 5.2;
+      vec2 m = uMouse * asp * 5.2;
       float d2 = dot(x - m, x - m);
       I *= 1.0 + 1.7 * exp(-d2 * 0.055);
 
+      /* ---- deep space: nebula gas drifting under three star shells ---- */
+      vec2 drift = vec2(uTime * 0.006, -uTime * 0.004) + uMouse * 0.05;
+      vec2 nuv = suv * 2.1 + drift + vec2(0.0, uScroll * 0.45);
+      float n1 = fbm(nuv);
+      float n2 = fbm(nuv * 1.8 + vec2(4.7, 1.3) - uTime * 0.008);
+      float cloud = smoothstep(0.42, 0.9, n1 * (0.55 + 0.45 * n2));
+      vec3 neb = mix(vec3(0.14, 0.05, 0.34), vec3(0.02, 0.2, 0.36), n2);
+      neb = mix(neb, vec3(0.36, 0.07, 0.3), smoothstep(0.55, 0.95, n1) * 0.7);
+      float centerDim = 1.0 - 0.5 * smoothstep(0.5, 0.0, length(suv));
+
       /* palette: deep space -> indigo fringes -> cyan interference */
-      vec3 deep = vec3(0.012, 0.012, 0.04);
+      vec3 deep = vec3(0.008, 0.008, 0.03);
       vec3 indigo = mix(vec3(0.14, 0.12, 0.5), vec3(0.08, 0.32, 0.5), smoothstep(0.3, 0.7, uScroll));
       vec3 cyan = vec3(0.1, 0.62, 0.7);
 
       vec3 col = deep;
-      col += indigo * smoothstep(0.05, 0.9, I);
-      col += cyan * pow(smoothstep(0.5, 2.4, I), 2.0) * 0.45;
-      col += vec3(0.55, 0.3, 0.9) * pow(smoothstep(1.4, 4.2, I), 3.0) * 0.35;
+      col += neb * cloud * 0.5 * centerDim;
+
+      /* Born-rule interference laid over the gas */
+      col += indigo * smoothstep(0.05, 0.9, I) * 0.5;
+      col += cyan * pow(smoothstep(0.5, 2.4, I), 2.0) * 0.4;
+      col += vec3(0.55, 0.3, 0.9) * pow(smoothstep(1.4, 4.2, I), 3.0) * 0.32;
 
       /* fringe contours: iso-I bands */
       float band = abs(fract(I * 1.7) - 0.5);
-      col += indigo * 0.14 * smoothstep(0.16, 0.0, band) * smoothstep(0.1, 0.5, I);
+      col += indigo * 0.1 * smoothstep(0.16, 0.0, band) * smoothstep(0.1, 0.5, I);
+
+      /* three star shells: far / mid / near, parallaxed by cursor + scroll */
+      col += starLayer(suv * (1.0 + uScroll * 0.10) + uMouse * 0.010, 46.0, 0.5, 900.0, uTime, 3.0) * 0.5;
+      col += starLayer(suv * (1.0 + uScroll * 0.22) + uMouse * 0.022 + 5.0, 22.0, 0.34, 520.0, uTime, 17.0) * 0.8;
+      col += starLayer(suv * (1.0 + uScroll * 0.40) + uMouse * 0.045 + 11.0, 9.5, 0.16, 240.0, uTime, 29.0) * 1.1;
 
       col *= 1.0 - 0.45 * length(vUv - 0.5);
       col += (hash(vUv * vec2(uTime * 60.0, uTime * 47.0)) - 0.5) * 0.026;
 
-      gl_FragColor = vec4(col * 0.42, 1.0);
+      gl_FragColor = vec4(col * 0.62, 1.0);
     }
   `,
 });
@@ -223,6 +266,25 @@ scene.add(dustGroup);
   dg.setAttribute('position', new THREE.BufferAttribute(dp, 3));
   dustGroup.add(new THREE.Points(dg, new THREE.PointsMaterial({
     size: 0.55, map: glowTex, color: 0x7f9cf5, transparent: true, opacity: 0.4,
+    depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true,
+  })));
+}
+/* near shell: few, bright, close — reads as real-space bokeh depth */
+{
+  const NEAR = isMobile ? 80 : 160;
+  const dp = new Float32Array(NEAR * 3);
+  for (let i = 0; i < NEAR; i++) {
+    const r = 9 + Math.random() * 13;
+    const th = Math.random() * Math.PI * 2;
+    const ph = Math.acos(2 * Math.random() - 1);
+    dp[i * 3] = r * Math.sin(ph) * Math.cos(th);
+    dp[i * 3 + 1] = r * Math.sin(ph) * Math.sin(th) * 0.7;
+    dp[i * 3 + 2] = r * Math.cos(ph);
+  }
+  const dg = new THREE.BufferGeometry();
+  dg.setAttribute('position', new THREE.BufferAttribute(dp, 3));
+  dustGroup.add(new THREE.Points(dg, new THREE.PointsMaterial({
+    size: 0.4, map: glowTex, color: 0xdbeafe, transparent: true, opacity: 0.5,
     depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true,
   })));
 }
@@ -418,6 +480,84 @@ const line4 = makeHexLines(hex.e4, 0xc084fc, 0.24); /* 4D section shadow (tesser
   hexGroup.add(new THREE.Points(g, vertMat));
   hexGroup.userData.vertPoints = g;
   hexGroup.userData.vertMat = vertMat;
+
+  /* white specular glints on the 64 polished joints (shares geometry) */
+  hexGroup.add(new THREE.Points(g, new THREE.PointsMaterial({
+    size: 0.1, map: glowTex, color: 0xffffff, transparent: true, opacity: 0.85,
+    depthWrite: false, blending: THREE.AdditiveBlending,
+  })));
+}
+
+/* glossy glass shell around the 6-cube: fresnel rim + orbiting specular */
+const shellMat = new THREE.ShaderMaterial({
+  transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  uniforms: { uT: { value: 0 } },
+  vertexShader: `
+    varying vec3 vN; varying vec3 vV;
+    void main(){
+      vN = normalize(normalMatrix * normal);
+      vec4 mv = modelViewMatrix * vec4(position, 1.0);
+      vV = normalize(-mv.xyz);
+      gl_Position = projectionMatrix * mv;
+    }`,
+  fragmentShader: `
+    precision highp float;
+    varying vec3 vN; varying vec3 vV;
+    uniform float uT;
+    void main(){
+      vec3 n = normalize(vN);
+      float fr = pow(1.0 - abs(dot(n, normalize(vV))), 3.0);
+      vec3 rim = mix(vec3(0.13, 0.83, 0.93), vec3(0.75, 0.52, 0.99), clamp(n.y * 0.5 + 0.5, 0.0, 1.0));
+      float spec = pow(max(0.0, dot(n, normalize(vec3(0.45 + 0.2 * sin(uT * 0.6), 0.8, 0.35)))), 42.0);
+      vec3 col = rim * fr * 0.5 + vec3(1.0) * spec * 0.45;
+      float a = fr * 0.42 + spec * 0.45;
+      gl_FragColor = vec4(col, a);
+    }`,
+});
+const shell = new THREE.Mesh(new THREE.SphereGeometry(4.6, 48, 32), shellMat);
+hexGroup.add(shell);
+
+/* ================= shooting stars ================= */
+const shoots = [];
+for (let i = 0; i < 3; i++) {
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3).setUsage(THREE.DynamicDrawUsage));
+  const m = new THREE.LineBasicMaterial({
+    color: 0xd8f4ff, transparent: true, opacity: 0,
+    blending: THREE.AdditiveBlending, depthWrite: false,
+  });
+  const line = new THREE.Line(g, m);
+  line.frustumCulled = false;
+  scene.add(line);
+  shoots.push({ g, m, life: -1, dur: 1, x0: 0, y0: 0, z0: 0, vx: 0, vy: 0 });
+}
+function spawnShoot(s) {
+  const left = Math.random() < 0.5;
+  s.x0 = left ? 12 + Math.random() * 6 : -12 - Math.random() * 6;
+  s.y0 = 5 + Math.random() * 7;
+  s.z0 = -7 - Math.random() * 16;
+  s.vx = (left ? -1 : 1) * (16 + Math.random() * 10);
+  s.vy = -(5 + Math.random() * 4);
+  s.life = 0;
+  s.dur = 1.0 + Math.random() * 0.6;
+}
+function updateShoots(dt) {
+  for (const s of shoots) {
+    if (s.life < 0) {
+      if (Math.random() < dt * 0.35) spawnShoot(s);
+      else { s.m.opacity = 0; continue; }
+    }
+    s.life += dt;
+    if (s.life > s.dur) { s.life = -1; s.m.opacity = 0; continue; }
+    const k = s.life / s.dur;
+    const hx = s.x0 + s.vx * s.life, hy = s.y0 + s.vy * s.life;
+    const tx = s.x0 + s.vx * Math.max(0, s.life - 0.28), ty = s.y0 + s.vy * Math.max(0, s.life - 0.28);
+    const arr = s.g.attributes.position.array;
+    arr[0] = tx; arr[1] = ty; arr[2] = s.z0;
+    arr[3] = hx; arr[4] = hy; arr[5] = s.z0;
+    s.g.attributes.position.needsUpdate = true;
+    s.m.opacity = Math.sin(Math.PI * k) * 0.8;
+  }
 }
 const COL_A = new THREE.Color('#22d3ee'), COL_B = new THREE.Color('#c084fc'), _c = new THREE.Color();
 
@@ -433,12 +573,24 @@ function updateHex(t) {
     }
     entry.lines.geometry.attributes.position.needsUpdate = true;
     if (entry.colors) {
+      /* glossy: moving key-light band + white specular hotspot per joint */
+      const Lx = Math.cos(t * 0.55) * 0.8, Ly = 0.55, Lz = Math.sin(t * 0.55) * 0.8;
+      const ll = Math.hypot(Lx, Ly, Lz);
+      const lx = Lx / ll, ly = Ly / ll, lz = Lz / ll;
       let co = 0;
       for (const [a, b] of entry.edges) {
-        _c.copy(COL_A).lerp(COL_B, proj.depth(a));
-        entry.colors[co] = _c.r; entry.colors[co + 1] = _c.g; entry.colors[co + 2] = _c.b; co += 3;
-        _c.copy(COL_A).lerp(COL_B, proj.depth(b));
-        entry.colors[co] = _c.r; entry.colors[co + 1] = _c.g; entry.colors[co + 2] = _c.b; co += 3;
+        for (const vi of [a, b]) {
+          const px = P[vi][0], py = P[vi][1], pz = P[vi][2];
+          const il = 1 / (Math.hypot(px, py, pz) + 1e-6);
+          const nd = Math.max(0, (px * lx + py * ly + pz * lz) * il);
+          _c.copy(COL_A).lerp(COL_B, proj.depth(vi));
+          const g = 0.55 + 0.65 * nd * nd;
+          const w = Math.pow(nd, 10) * 0.7;
+          entry.colors[co] = _c.r * g + w;
+          entry.colors[co + 1] = _c.g * g + w;
+          entry.colors[co + 2] = _c.b * g + w;
+          co += 3;
+        }
       }
       entry.lines.geometry.attributes.color.needsUpdate = true;
     }
@@ -575,12 +727,19 @@ PROJECTS.forEach((proj, i) => {
     blending: THREE.AdditiveBlending, depthWrite: false,
   }));
   glow.scale.setScalar(2.1);
+  /* specular hotspot: reads as a polished glass body */
+  const spec = new THREE.Sprite(new THREE.SpriteMaterial({
+    map: glowTex, color: 0xffffff, transparent: true, opacity: 0.8,
+    blending: THREE.AdditiveBlending, depthWrite: false,
+  }));
+  spec.scale.setScalar(0.45);
+  spec.position.set(-0.3, 0.34, 0.34);
   const hit = new THREE.Mesh(new THREE.SphereGeometry(1.0, 8, 8),
     new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
   hit.userData.projectIndex = i;
   const label = labelSprite(proj.short);
   label.position.y = 1.15;
-  holder.add(wire, glow, hit, label);
+  holder.add(wire, glow, spec, hit, label);
   holder.scale.setScalar(0.001);
   holder.visible = false;
   cellGroup.add(holder);
@@ -779,10 +938,13 @@ function tick() {
   hexGroup.rotation.y = Math.sin(t * 0.14) * (0.2 + p * 0.35);
   hexGroup.rotation.x = Math.cos(t * 0.11) * (0.12 + p * 0.2);
   hexGroup.userData.vertMat.size = 0.26 + 0.08 * Math.sin(t * 2.3);
+  shellMat.uniforms.uT.value = t;
+  shell.scale.setScalar(1 + 0.02 * Math.sin(t * 0.8));
 
   /* atmosphere layers */
-  dustGroup.rotation.y = t * 0.008;
-  dustGroup.rotation.x = Math.sin(t * 0.05) * 0.05;
+  dustGroup.rotation.y = t * 0.008 + mouseSmX.v * 0.05;
+  dustGroup.rotation.x = Math.sin(t * 0.05) * 0.05 + mouseSmY.v * 0.035;
+  updateShoots(dt);
   coreGlow.material.opacity = (0.22 + 0.1 * Math.sin(t * 1.9)) * (1 - sstep(0.3, 0.7, p));
   if (bloomPass) bloomPass.strength = 0.45 + 0.08 * Math.sin(t * 0.5) + 0.12 * sstep(0.4, 0.55, p);
 
