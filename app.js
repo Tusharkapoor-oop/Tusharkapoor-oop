@@ -448,7 +448,6 @@ function buildQuery() {
 }
 
 let skillAtt = [], repoAtt = [], hEnt = 0, topMatch = '—';
-let attTimer = 0;
 function updateAttention() {
   const q = buildQuery();
 
@@ -685,7 +684,7 @@ function updateThetaHUD(t) {
 /* ================= main loop ================= */
 const clock = new THREE.Clock();
 let frames = 0, lastFpsAt = 0, loaderHidden = false;
-let hudTimer = 0, logpTimer = 0;
+let lastHudAt = -1, lastLogpAt = -1, lastAttAt = -1;
 const mouseSmX = { v: 0 }, mouseSmY = { v: 0 };
 
 function tick() {
@@ -723,19 +722,16 @@ function tick() {
   cellGroup.visible = sp > 0.005;
   arcLines.visible = cellGroup.visible;
 
-  /* attention refresh (throttled) */
-  attTimer += dt;
-  if (attTimer > 0.12) { attTimer = 0; updateAttention(); }
-  hudTimer += dt;
-  if (hudTimer > 0.15) {
-    hudTimer = 0;
+  /* attention refresh (wall-clock throttled) */
+  if (t - lastAttAt > 0.12) { lastAttAt = t; updateAttention(); }
+  if (t - lastHudAt > 0.15) {
+    lastHudAt = t;
     logpEl.textContent = logpMean.toFixed(2);
     hentEl.textContent = hEnt.toFixed(3);
     topEl.textContent = topMatch;
     updateThetaHUD(t);
   }
-  logpTimer += dt;
-  if (logpTimer > 1.2) { logpTimer = 0; sampleLogP(t); }
+  if (t - lastLogpAt > 1.2) { lastLogpAt = t; sampleLogP(t); }
 
   /* hover raycast */
   let newHover = null;
