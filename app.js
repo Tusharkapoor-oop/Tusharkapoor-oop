@@ -121,6 +121,7 @@ const bgUniforms = {
   uTime: { value: 0 },
   uMouse: { value: new THREE.Vector2(0, 0) },
   uScroll: { value: 0 },
+  uQual: { value: isMobile ? 0 : 1 },
 };
 const bgMat = new THREE.ShaderMaterial({
   depthTest: false,
@@ -136,6 +137,7 @@ const bgMat = new THREE.ShaderMaterial({
     uniform float uTime;
     uniform vec2 uMouse;
     uniform float uScroll;
+    uniform float uQual;
 
     float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
     float vnoise(vec2 p){
@@ -161,6 +163,42 @@ const bgMat = new THREE.ShaderMaterial({
       vec3 tint = mix(vec3(1.0, 0.94, 0.88), vec3(0.78, 0.88, 1.0), fract(rnd * 7.13));
       float mag = 0.6 + 0.7 * hash(id + seed + 7.7);
       return tint * on * exp(-d * d * sharp) * tw * mag;
+    }
+
+    vec2 rot2(vec2 p, float a){ float c = cos(a), s = sin(a); return vec2(c*p.x - s*p.y, s*p.x + c*p.y); }
+
+    /* Milky Way: galactic plane band with turbulent dust lanes + central bulge */
+    float mwBand(vec2 p){
+      float b = p.y, along = p.x;
+      float core = exp(-b*b*8.5);
+      float lane = fbm(vec2(along*1.3, b*7.0) + 3.7);
+      float dust = smoothstep(0.48, 0.85, fbm(vec2(along*2.6 - 1.3, b*11.0)));
+      float glow = core * (0.5 + 0.5*lane);
+      glow *= 1.0 - 0.72 * dust * exp(-b*b*14.0);
+      float bulge = exp(-(along*along*1.7 + b*b*26.0)) * 1.7;
+      return glow + bulge;
+    }
+
+    /* distant spiral galaxy brightness — two winding arms + old-star bulge */
+    float spiral(vec2 q, float arms, float t, float seed){
+      float r = length(q);
+      float disk = 1.0 - smoothstep(0.3, 1.0, r);
+      if (disk <= 0.002) return 0.0;
+      float th = atan(q.y, q.x);
+      float wind = th*arms + log(r + 0.05)*6.5 - t;
+      float arm = pow(sin(wind)*0.5 + 0.5, 2.2);
+      float tex = fbm(q*7.0 + seed);
+      float bulge = exp(-r*r*30.0) * 2.4;
+      return (arm*disk*(0.35 + 0.65*tex) + bulge) * (0.55 + 0.45*tex);
+    }
+    vec3 galaxyCol(vec2 suv, vec2 c, float rad, float rot, float squash, float t, float seed){
+      vec2 q = rot2(suv - c, rot);
+      q.y /= squash;
+      q /= rad;
+      float v = spiral(q, 2.0, t, seed);
+      vec3 warm = vec3(1.0, 0.8, 0.5);
+      vec3 cool = vec3(0.5, 0.66, 1.0);
+      return mix(cool, warm, exp(-dot(q,q)*7.0)) * v;
     }
 
     void main(){
@@ -203,7 +241,21 @@ const bgMat = new THREE.ShaderMaterial({
       vec3 cyan = vec3(0.1, 0.62, 0.7);
 
       vec3 col = deep;
-      col += neb * cloud * 0.5 * centerDim;
+      col += neb * cloud * 0.42 * centerDim;
+
+      if (uQual > 0.5){
+        /* the Milky Way itself: a diagonal galactic plane across the sky */
+        vec2 mw = rot2(suv - vec2(0.0, 0.22 + uScroll*0.12), -0.42);
+        float mwg = 0.0;
+        if (abs(mw.y) < 0.62) mwg = mwBand(mw);
+        vec3 mwCol = mix(vec3(1.0, 0.9, 0.72), vec3(0.6, 0.7, 1.0), smoothstep(0.0, 0.45, abs(mw.y)));
+        col += mwCol * mwg * 0.11 * (1.0 - 0.5 * smoothstep(0.62, 0.0, length(suv)));
+
+        /* three distant island universes, drifting on cursor + scroll parallax */
+        col += galaxyCol(suv, vec2(-0.58, 0.30) + uMouse*0.015 + vec2(0.0, -uScroll*0.18), 0.30, 0.7, 0.55, uTime*0.03, 4.0) * 0.52;
+        col += galaxyCol(suv, vec2(0.55, -0.30) + uMouse*0.028 + vec2(0.0, -uScroll*0.30), 0.22, -0.4, 0.45, uTime*0.04, 9.0) * 0.46;
+        col += galaxyCol(suv, vec2(-0.34, -0.44) + uMouse*0.04 + vec2(0.0, -uScroll*0.42), 0.15, 1.9, 0.7, -uTime*0.05, 15.0) * 0.4;
+      }
 
       /* Born-rule interference laid over the gas */
       col += indigo * smoothstep(0.05, 0.9, I) * 0.5;
@@ -218,6 +270,28 @@ const bgMat = new THREE.ShaderMaterial({
       col += starLayer(suv * (1.0 + uScroll * 0.10) + uMouse * 0.010, 46.0, 0.5, 900.0, uTime, 3.0) * 0.5;
       col += starLayer(suv * (1.0 + uScroll * 0.22) + uMouse * 0.022 + 5.0, 22.0, 0.34, 520.0, uTime, 17.0) * 0.8;
       col += starLayer(suv * (1.0 + uScroll * 0.40) + uMouse * 0.045 + 11.0, 9.5, 0.16, 240.0, uTime, 29.0) * 1.1;
+
+      /* a small blue marble: clouds, continents, terminator, atmosphere limb */
+      if (uQual > 0.5){
+        vec2 pc = vec2(0.52, 0.30) + uMouse*0.02 + vec2(0.0, -uScroll*0.26);
+        vec2 pq = (suv - pc) / 0.062;
+        float pd2 = dot(pq, pq);
+        if (pd2 < 1.0){
+          float z = sqrt(1.0 - pd2);
+          vec3 pn = vec3(pq, z);
+          float lnd = dot(normalize(pn), normalize(vec3(0.55, 0.5, 0.65)));
+          float day = smoothstep(-0.12, 0.32, lnd);
+          vec2 su2 = vec2(asin(clamp(pn.x, -1.0, 1.0)), asin(clamp(pn.y, -1.0, 1.0))) * 1.2;
+          float cont = fbm(su2*3.1 + 8.0);
+          float cl = fbm(su2*6.5 + vec2(uTime*0.02, 0.0) + 21.0);
+          vec3 surf = mix(vec3(0.05, 0.16, 0.42), vec3(0.16, 0.42, 0.24), smoothstep(0.48, 0.62, cont));
+          surf = mix(surf, vec3(0.9, 0.95, 1.0), smoothstep(0.56, 0.78, cl) * 0.75);
+          surf *= 0.12 + 1.05 * day;
+          float rim = pow(1.0 - z, 2.6);
+          vec3 pcol = surf + vec3(0.35, 0.6, 1.0) * rim * 1.5 * max(day, 0.25);
+          col = mix(col, pcol, 1.0 - smoothstep(0.94, 1.0, pd2));
+        }
+      }
 
       col *= 1.0 - 0.45 * length(vUv - 0.5);
       col += (hash(vUv * vec2(uTime * 60.0, uTime * 47.0)) - 0.5) * 0.026;
@@ -294,6 +368,179 @@ const coreGlow = new THREE.Sprite(new THREE.SpriteMaterial({
 }));
 coreGlow.scale.setScalar(2.6);
 scene.add(coreGlow);
+
+/* ================= universe: ringed gas giant + moon ================= */
+const planetGroup = new THREE.Group();
+planetGroup.position.set(17, -4, -30);
+planetGroup.rotation.z = 0.42;
+scene.add(planetGroup);
+
+const planetMat = new THREE.ShaderMaterial({
+  uniforms: { uT: { value: 0 }, uMoon: { value: 0 } },
+  vertexShader: `
+    varying vec3 vN; varying vec3 vV; varying vec2 vUv;
+    void main(){
+      vUv = uv;
+      vN = normalize(normalMatrix * normal);
+      vec4 mv = modelViewMatrix * vec4(position, 1.0);
+      vV = normalize(-mv.xyz);
+      gl_Position = projectionMatrix * mv;
+    }`,
+  fragmentShader: `
+    precision highp float;
+    varying vec3 vN; varying vec3 vV; varying vec2 vUv;
+    uniform float uT; uniform float uMoon;
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+    float vnoise(vec2 p){
+      vec2 i = floor(p), f = fract(p);
+      f = f * f * (3.0 - 2.0 * f);
+      return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+                 mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+    }
+    float fbm(vec2 p){
+      float v = 0.0, a = 0.5;
+      for (int i = 0; i < 4; i++){ v += a * vnoise(p); p = p * 2.03 + vec2(17.3, 9.1); a *= 0.5; }
+      return v;
+    }
+    void main(){
+      vec3 n = normalize(vN);
+      vec3 V = normalize(vV);
+      vec3 L = normalize(vec3(0.5, 0.62, 0.6));
+      float ndl = dot(n, L);
+      float day = smoothstep(-0.14, 0.3, ndl);
+      float lat = vUv.y;
+      /* banded gas turbulence */
+      float turb = fbm(vec2(vUv.x*6.0 + uT*0.012, lat*10.0));
+      float zone = sin(lat*34.0 + turb*3.6)*0.5 + 0.5;
+      float sw = fbm(vec2(vUv.x*4.0 - uT*0.008, lat*16.0 + 4.0));
+      vec3 surf = mix(vec3(0.86, 0.62, 0.4), vec3(0.96, 0.87, 0.7), zone);
+      surf = mix(surf, vec3(0.72, 0.38, 0.26), smoothstep(0.5, 0.85, sw)*0.55);
+      surf *= 0.72 + 0.28*sin(lat*3.14159);
+      if (uMoon > 0.5){
+        float g = fbm(vec2(vUv.x*8.0, lat*8.0) + 3.0);
+        surf = mix(vec3(0.5, 0.5, 0.55), vec3(0.72, 0.72, 0.78), g);
+        surf *= 0.7 + 0.3*fbm(vec2(vUv.x*22.0, lat*22.0));
+      }
+      vec3 col = surf * (0.04 + 0.78*day);
+      float fr = pow(1.0 - abs(dot(n, V)), 3.0);
+      vec3 atmo = uMoon > 0.5 ? vec3(0.6, 0.65, 0.8) : vec3(1.0, 0.72, 0.45);
+      col += fr * atmo * (0.1 + 0.9*day) * 0.6;
+      gl_FragColor = vec4(col, 1.0);
+    }`,
+});
+const planet = new THREE.Mesh(new THREE.SphereGeometry(7, 48, 32), planetMat);
+planet.rotation.z = 0.08;
+planetGroup.add(planet);
+
+/* ring system: banded ice chunks, Cassini gap, lit limb */
+const ringMat = new THREE.ShaderMaterial({
+  transparent: true, depthWrite: false, side: THREE.DoubleSide,
+  blending: THREE.AdditiveBlending,
+  uniforms: {},
+  vertexShader: `
+    varying vec3 vP;
+    void main(){ vP = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+  fragmentShader: `
+    precision highp float;
+    varying vec3 vP;
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+    float vnoise(vec2 p){
+      vec2 i = floor(p), f = fract(p);
+      f = f * f * (3.0 - 2.0 * f);
+      return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+                 mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+    }
+    void main(){
+      float r = length(vP.xy);
+      float rn = clamp((r - 10.0) / 7.5, 0.0, 1.0);
+      float th = atan(vP.y, vP.x);
+      float bands = 0.55 + 0.45*sin(rn*54.0 + vnoise(vec2(rn*7.0, 0.5))*4.0);
+      float gap = 1.0 - 0.85*exp(-pow((rn - 0.63)*14.0, 2.0));
+      float shade = 0.72 + 0.28*sin(th + 1.2);
+      float a = bands * gap * smoothstep(0.0, 0.08, rn) * (1.0 - smoothstep(0.86, 1.0, rn)) * shade * 0.36;
+      vec3 col = mix(vec3(0.95, 0.87, 0.7), vec3(0.7, 0.75, 0.9), rn);
+      gl_FragColor = vec4(col * a, a);
+    }`,
+});
+const ring = new THREE.Mesh(new THREE.RingGeometry(10, 17.5, 128, 1), ringMat);
+ring.rotation.x = -Math.PI / 2 + 0.45;
+planetGroup.add(ring);
+
+const moonMat = planetMat.clone();
+moonMat.uniforms.uMoon.value = 1;
+const moon = new THREE.Mesh(new THREE.SphereGeometry(1.5, 24, 16), moonMat);
+planetGroup.add(moon);
+
+/* ================= universe: black hole ================= */
+const bhGroup = new THREE.Group();
+bhGroup.position.set(-30, 10, -65);
+bhGroup.rotation.z = 0.15;
+scene.add(bhGroup);
+const bhHeat = { value: 0.55 };
+bhGroup.add(new THREE.Mesh(new THREE.SphereGeometry(6, 32, 24), new THREE.MeshBasicMaterial({ color: 0x000000 })));
+
+function ringTexture() {
+  const c = document.createElement('canvas');
+  c.width = c.height = 256;
+  const g = c.getContext('2d');
+  g.strokeStyle = 'rgba(190,235,255,0.95)';
+  g.lineWidth = 5;
+  g.shadowColor = 'rgba(140,220,255,0.9)';
+  g.shadowBlur = 16;
+  g.beginPath(); g.arc(128, 128, 108, 0, Math.PI * 2); g.stroke();
+  g.strokeStyle = 'rgba(255,255,255,0.95)';
+  g.lineWidth = 2;
+  g.shadowBlur = 6;
+  g.beginPath(); g.arc(128, 128, 108, 0, Math.PI * 2); g.stroke();
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+const photonRing = new THREE.Sprite(new THREE.SpriteMaterial({
+  map: ringTexture(), transparent: true, opacity: 0.95,
+  blending: THREE.AdditiveBlending, depthWrite: false, color: 0xbfeaff,
+}));
+photonRing.scale.setScalar(16);
+photonRing.position.z = 0.5;
+bhGroup.add(photonRing);
+
+/* accretion disk: differential spin, doppler-beamed hot side, heat rises at D3 */
+const accMat = new THREE.ShaderMaterial({
+  transparent: true, depthWrite: false, side: THREE.DoubleSide,
+  blending: THREE.AdditiveBlending,
+  uniforms: { uT: { value: 0 }, uHeat: bhHeat },
+  vertexShader: `
+    varying vec3 vP;
+    void main(){ vP = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+  fragmentShader: `
+    precision highp float;
+    varying vec3 vP;
+    uniform float uT; uniform float uHeat;
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+    float vnoise(vec2 p){
+      vec2 i = floor(p), f = fract(p);
+      f = f * f * (3.0 - 2.0 * f);
+      return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+                 mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+    }
+    void main(){
+      float r = length(vP.xy);
+      float rn = clamp((r - 7.0) / 11.0, 0.0, 1.0);
+      float th = atan(vP.y, vP.x);
+      float spin = th - uT*0.55 + rn*3.2;
+      float streak = pow(0.5 + 0.5*sin(spin*3.0 + vnoise(vec2(spin*1.4, rn*6.0))*5.0), 1.6);
+      float tex = 0.4 + 0.6*vnoise(vec2(spin*2.2, rn*9.0));
+      float beam = 0.35 + 0.85*pow(0.5 + 0.5*cos(th + 0.9), 2.0);
+      vec3 col = mix(vec3(1.0, 0.96, 0.85), vec3(1.0, 0.62, 0.25), smoothstep(0.0, 0.5, rn));
+      col = mix(col, vec3(0.85, 0.2, 0.12), smoothstep(0.45, 1.0, rn));
+      float a = streak * tex * beam * (1.0 - smoothstep(0.7, 1.0, rn)) * smoothstep(0.0, 0.07, rn);
+      a *= (0.5 + 0.5*uHeat) * 1.15;
+      gl_FragColor = vec4(col * a * uHeat, a);
+    }`,
+});
+const accDisk = new THREE.Mesh(new THREE.RingGeometry(7, 18, 128, 1), accMat);
+accDisk.rotation.x = -Math.PI / 2 + 0.55;
+bhGroup.add(accDisk);
 
 /* ================= normalizing-flow particle field ================= */
 const flow = new Flow(0x5eed1234);
@@ -557,6 +804,73 @@ function updateShoots(dt) {
     arr[3] = hx; arr[4] = hy; arr[5] = s.z0;
     s.g.attributes.position.needsUpdate = true;
     s.m.opacity = Math.sin(Math.PI * k) * 0.8;
+  }
+}
+
+/* ================= comets: rare visitors with head glow + ion tail ================= */
+const comets = [];
+function makeTail(color, opacity) {
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3).setUsage(THREE.DynamicDrawUsage));
+  const m = new THREE.LineBasicMaterial({
+    color, transparent: true, opacity,
+    blending: THREE.AdditiveBlending, depthWrite: false,
+  });
+  const line = new THREE.Line(g, m);
+  line.frustumCulled = false;
+  scene.add(line);
+  return { g, m, line };
+}
+for (let i = 0; i < 2; i++) {
+  const head = new THREE.Sprite(new THREE.SpriteMaterial({
+    map: glowTex, color: 0xeaf6ff, transparent: true, opacity: 0,
+    blending: THREE.AdditiveBlending, depthWrite: false,
+  }));
+  head.scale.setScalar(1.15);
+  scene.add(head);
+  comets.push({
+    head, dust: makeTail(0xfff2d8, 0), ion: makeTail(0x7dd3fc, 0),
+    life: -1, dur: 5, x0: 0, y0: 0, z0: 0, vx: 0, vy: 0, ix: 0, iy: 0,
+  });
+}
+function spawnComet(c) {
+  const left = Math.random() < 0.5;
+  c.x0 = left ? 16 + Math.random() * 8 : -16 - Math.random() * 8;
+  c.y0 = 7 + Math.random() * 6;
+  c.z0 = -12 - Math.random() * 14;
+  c.vx = (left ? -1 : 1) * (5 + Math.random() * 4);
+  c.vy = -(2 + Math.random() * 2);
+  const il = Math.hypot(c.x0, c.y0) || 1;
+  c.ix = c.x0 / il; c.iy = c.y0 / il;
+  c.life = 0;
+  c.dur = 4.5 + Math.random() * 2;
+}
+function updateComets(dt) {
+  for (const c of comets) {
+    if (c.life < 0) {
+      if (Math.random() < dt * 0.055) spawnComet(c);
+      else { c.head.material.opacity = 0; c.dust.m.opacity = 0; c.ion.m.opacity = 0; continue; }
+    }
+    c.life += dt;
+    if (c.life > c.dur) { c.life = -1; c.head.material.opacity = c.dust.m.opacity = c.ion.m.opacity = 0; continue; }
+    const k = c.life / c.dur;
+    const env = Math.sin(Math.PI * k);
+    const hx = c.x0 + c.vx * c.life, hy = c.y0 + c.vy * c.life;
+    c.head.position.set(hx, hy, c.z0);
+    c.head.material.opacity = env * 0.95;
+    /* dust tail: behind the head, along travel direction */
+    const vl = Math.hypot(c.vx, c.vy) || 1;
+    const d = c.dust.g.attributes.position.array;
+    d[0] = hx - (c.vx / vl) * 5.5; d[1] = hy - (c.vy / vl) * 5.5; d[2] = c.z0;
+    d[3] = hx; d[4] = hy; d[5] = c.z0;
+    c.dust.g.attributes.position.needsUpdate = true;
+    c.dust.m.opacity = env * 0.6;
+    /* ion tail: pushed away from the core (solar wind of the hexeract) */
+    const t2 = c.ion.g.attributes.position.array;
+    t2[0] = hx; t2[1] = hy; t2[2] = c.z0;
+    t2[3] = hx + c.ix * 7.5; t2[4] = hy + c.iy * 7.5; t2[5] = c.z0;
+    c.ion.g.attributes.position.needsUpdate = true;
+    c.ion.m.opacity = env * 0.4 * (0.7 + 0.3 * Math.sin(c.life * 7));
   }
 }
 const COL_A = new THREE.Color('#22d3ee'), COL_B = new THREE.Color('#c084fc'), _c = new THREE.Color();
@@ -904,6 +1218,7 @@ function updateThetaHUD(t) {
 
 /* ================= main loop ================= */
 const clock = new THREE.Clock();
+
 let frames = 0, lastFpsAt = 0, loaderHidden = false;
 let lastHudAt = -1, lastLogpAt = -1, lastAttAt = -1;
 const mouseSmX = { v: 0 }, mouseSmY = { v: 0 };
@@ -945,6 +1260,18 @@ function tick() {
   dustGroup.rotation.y = t * 0.008 + mouseSmX.v * 0.05;
   dustGroup.rotation.x = Math.sin(t * 0.05) * 0.05 + mouseSmY.v * 0.035;
   updateShoots(dt);
+  updateComets(dt);
+
+  /* universe bodies */
+  planet.rotation.y += dt * 0.02;
+  planetMat.uniforms.uT.value = t;
+  moonMat.uniforms.uT.value = t;
+  const ma = t * 0.14;
+  moon.position.set(Math.cos(ma) * 12.5, Math.sin(ma * 0.7) * 2.2, Math.sin(ma) * 12.5);
+  planetGroup.rotation.y = Math.sin(t * 0.03) * 0.1;
+  accMat.uniforms.uT.value = t;
+  bhHeat.value = 0.5 + 0.5 * sstep(0.58, 0.78, p);
+  bhGroup.rotation.y = Math.sin(t * 0.05) * 0.1;
   coreGlow.material.opacity = (0.22 + 0.1 * Math.sin(t * 1.9)) * (1 - sstep(0.3, 0.7, p));
   if (bloomPass) bloomPass.strength = 0.45 + 0.08 * Math.sin(t * 0.5) + 0.12 * sstep(0.4, 0.55, p);
 
@@ -1039,7 +1366,7 @@ addEventListener('resize', () => {
 const pParam = location.search.match(/[?&]p=([\d.]+)/);
 if (pParam) { const v = parseFloat(pParam[1]); if (isFinite(v)) { target = v; cur = v; } document.body.classList.add('snap'); }
 console.log('%c COGNITUM 6D ', 'background:#4f46e5;color:#fff;font-size:16px',
-  `v3 — SO(6)·flow·HRR(D=${HV_D})·${composer ? 'bloom+afterimage' : 'direct'} — you inspect like an engineer.`);
+  `v4 UNIVERSE — SO(6)·flow·HRR(D=${HV_D})·${composer ? 'bloom+afterimage' : 'direct'} — you inspect like an engineer.`);
 updateAttention();
 sampleLogP(0);
 requestAnimationFrame(tick);
