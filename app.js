@@ -8,6 +8,7 @@
 import { HV_D, HyperMemory, bundle, normalize, cosine, softmaxAttention, entropy } from './hrr.js';
 import { Flow } from './flow.js';
 import { buildHexeract, projectAll } from './hexeract.js';
+import { loadRepos, planetsFromRepos } from './repos.mjs';
 
 const FALLBACK = () => {
   document.getElementById('fallback').hidden = false;
@@ -38,6 +39,41 @@ const PROJECTS = [
   { name: 'IBM-Cloud-project', short: 'IBM · CLOUD', blurb: 'Predictive maintenance on IBM Cloud / Watsonx — Jupyter ML pipeline with evaluation.', slug: 'IBM-Cloud-project', tags: ['cloud', 'ml', 'data'] },
 ];
 const REPO_BASE = 'https://github.com/Tusharkapoor-oop/';
+
+/* ---- GitHub data layer: live API (1h cache) → snapshot → builtin.
+ * Enriches the curated list with real stars/language/links and appends
+ * any project repo discovered live that the curated list doesn't know. */
+const NUMWORD = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+  'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen',
+  'twenty', 'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five', 'twenty-six',
+  'twenty-seven', 'twenty-eight', 'twenty-nine', 'thirty'];
+const repoData = await loadRepos();
+{
+  const live = planetsFromRepos(repoData.repos || []);
+  live.forEach((lp) => {
+    const ex = PROJECTS.find((p) => p.slug === lp.slug || p.name === lp.name);
+    if (ex) {
+      ex.stars = lp.stars; ex.language = lp.language; ex.pushedAt = lp.pushedAt;
+      ex.href = lp.href; ex.radius = lp.radius; ex.orbit = lp.orbit; ex.hue = lp.hue;
+    } else {
+      PROJECTS.push({
+        name: lp.name, short: lp.short, blurb: lp.blurb, slug: lp.slug,
+        tags: lp.tags.length ? lp.tags : ['repo'], stars: lp.stars, language: lp.language,
+        pushedAt: lp.pushedAt, href: lp.href, radius: lp.radius, orbit: lp.orbit, hue: lp.hue,
+        discovered: true,
+      });
+    }
+  });
+  PROJECTS.forEach((p, i) => {
+    if (p.radius === undefined) p.radius = 0.42;
+    if (p.orbit === undefined) p.orbit = (i / PROJECTS.length) * Math.PI * 2;
+    if (p.hue === undefined) p.hue = 0;
+  });
+  const srcEl = document.getElementById('dataSrc');
+  if (srcEl) srcEl.textContent = repoData.source;
+  const attractorH2 = document.querySelector('#s2 h2');
+  if (attractorH2) attractorH2.textContent = `${NUMWORD[PROJECTS.length] || PROJECTS.length} attractors`;
+}
 
 const SKILLS = [
   { name: 'Python', tags: ['lang', 'ml', 'backend'] },
@@ -949,7 +985,7 @@ const skillMeterRows = buildMeters(document.getElementById('skillMeters'), SKILL
 const repoMeterRows = buildMeters(
   document.getElementById('repoMeters'),
   PROJECTS.map((p) => p.name),
-  PROJECTS.map((p) => REPO_BASE + p.slug)
+  PROJECTS.map((p) => p.href || REPO_BASE + p.slug)
 );
 
 /* query construction: cursor -> concept blend in tag space + layer role */
@@ -1006,8 +1042,8 @@ scene.add(cellGroup);
 const cells = [];
 const rayTargets = [];
 const CELL_R = 7.6;
-const cellLocal = PROJECTS.map((_, i) => {
-  const a = (i / PROJECTS.length) * Math.PI * 2;
+const cellLocal = PROJECTS.map((p, i) => {
+  const a = p.orbit !== undefined ? p.orbit : (i / PROJECTS.length) * Math.PI * 2;
   return [Math.cos(a) * CELL_R, Math.sin(i * 2.7) * 0.9, Math.sin(a) * CELL_R];
 });
 
@@ -1032,15 +1068,16 @@ function labelSprite(text) {
 PROJECTS.forEach((proj, i) => {
   const holder = new THREE.Group();
   holder.position.set(...cellLocal[i]);
+  const cellR = proj.radius || 0.42;
   const wire = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(0.42, 0),
+    new THREE.IcosahedronGeometry(cellR, 0),
     new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true, transparent: true, opacity: 0.9 })
   );
   const glow = new THREE.Sprite(new THREE.SpriteMaterial({
     map: glowTex, color: 0x4f46e5, transparent: true, opacity: 0.85,
     blending: THREE.AdditiveBlending, depthWrite: false,
   }));
-  glow.scale.setScalar(2.1);
+  glow.scale.setScalar(2.1 * (cellR / 0.42));
   /* specular hotspot: reads as a polished glass body */
   const spec = new THREE.Sprite(new THREE.SpriteMaterial({
     map: glowTex, color: 0xffffff, transparent: true, opacity: 0.8,
@@ -1161,7 +1198,7 @@ addEventListener('pointermove', (e) => {
   }
 });
 canvas.addEventListener('click', () => {
-  if (hovered !== null) window.open(REPO_BASE + cells[hovered].proj.slug, '_blank', 'noopener');
+  if (hovered !== null) window.open(cells[hovered].proj.href || REPO_BASE + cells[hovered].proj.slug, '_blank', 'noopener');
 });
 
 const embedEl = document.getElementById('embed');
@@ -1303,7 +1340,10 @@ function tick() {
     hovered = newHover;
     if (hovered !== null) {
       const pr = cells[hovered].proj;
-      tooltip.innerHTML = `<b>${pr.name}</b><span>${pr.blurb}</span><span>click to open ↗</span>`;
+      const meta = pr.stars !== undefined
+        ? `<span>&#9733; ${pr.stars}${pr.language ? ' · ' + pr.language : ''}</span>`
+        : '';
+      tooltip.innerHTML = `<b>${pr.name}</b><span>${pr.blurb}</span>${meta}<span>click to open ↗</span>`;
       tooltip.classList.add('show');
       canvas.style.cursor = 'pointer';
     } else {
