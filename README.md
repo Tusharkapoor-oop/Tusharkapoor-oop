@@ -48,27 +48,27 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  4d ago
+  Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  5d ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
-  OS_LAB_Linux_Ubantu                  Python         Backend         4★  5d ago
+  OS_LAB_Linux_Ubantu                  Python         Backend         4★  6d ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
-  Advance_hand_gesture                 JavaScript     Vision          4★  6d ago
+  Advance_hand_gesture                 JavaScript     Vision          4★  1w ago
                                        └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
-  auracontrol-backend                  TypeScript     Vision          4★  6d ago
+  auracontrol-backend                  TypeScript     Vision          4★  1w ago
                                        └─ Real-time hand-gesture recognition backend (AuraControl) - F..
-  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            4★  6d ago
+  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            4★  1w ago
                                        └─ Netflix and Airbnb data analysis - EDA notebooks, decks, and..
-  go-bric                              TypeScript     Frontend        4★  6d ago
+  go-bric                              TypeScript     Frontend        4★  1w ago
                                        └─ Multi-agent company scouting on Next.js and Gemini - five sp..
-  ReflectAI                            Jupyter Notebook Engineering     4★  6d ago
+  ReflectAI                            Jupyter Notebook Engineering     4★  1w ago
                                        └─ Deterministic end-of-day reflection tool - structured conver..
-  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           4★  6d ago
+  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           4★  1w ago
                                        └─ Crop recommendation from soil/climate features - full ML pip..
-  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         6★  6d ago
+  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         6★  1w ago
                                        └─ This project is an AI-based Study Planner designed to help s..
-  Kapoor-portfolio                     TypeScript     Frontend        1★  6d ago
+  Kapoor-portfolio                     TypeScript     Frontend        1★  1w ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
-  NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     4★  6d ago
+  NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     4★  1w ago
                                        └─ Automated NPU fallback diagnosis - find which layers fell ba..
 ```
 
@@ -111,7 +111,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-10-07 04:59 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-08 05:09 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
