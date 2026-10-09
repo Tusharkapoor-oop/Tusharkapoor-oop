@@ -48,9 +48,9 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  5d ago
+  Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  6d ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
-  OS_LAB_Linux_Ubantu                  Python         Backend         4★  6d ago
+  OS_LAB_Linux_Ubantu                  Python         Backend         4★  1w ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
   Advance_hand_gesture                 JavaScript     Vision          4★  1w ago
                                        └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
@@ -111,7 +111,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-10-08 05:09 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-09 05:12 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
