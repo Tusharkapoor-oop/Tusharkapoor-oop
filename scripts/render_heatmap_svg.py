@@ -21,10 +21,10 @@ OUT  = os.path.join(BASE, "contrib-heatmap.svg")
 PALETTE = ["#1a1b31", "#262752", "#393b7f", "#4f46e5", "#7b6cff", "#a5a6ff"]
 #          none -> brightest (indigo ramp, matches the profile's #4f46e5 family)
 
-CELL          = 11   # day square
+CELL          = 12   # day square
 GAP           = 3    # gap between squares
-PAD_LEFT      = 32   # room for the Mo/We/Fr labels
-PAD_TOP       = 8
+PAD_LEFT      = 34   # room for the Mo/We/Fr labels
+PAD_TOP       = 18   # room for the month label row
 WEEK_DELAY_MS = 22
 
 BG      = "#0f0f1a"
@@ -35,22 +35,29 @@ FONT    = "JetBrains Mono, ui-monospace, monospace"
 
 
 # ── Level mapping ──────────────────────────────────────────────────────
+# Thresholds tuned low so light activity still colors in — with a
+# 100-200 contributions/year calendar, GitHub-scale buckets leave most
+# days at level 0/1 and the graph reads as empty.
 
 def level_for(count: int) -> int:
     if count == 0:  return 0
-    if count <= 2:  return 1
-    if count <= 5:  return 2
-    if count <= 9:  return 3
-    if count <= 15: return 4
+    if count <= 1:  return 1
+    if count <= 3:  return 2
+    if count <= 6:  return 3
+    if count <= 11: return 4
     return 5
 
 
 # ── Calendar → week columns ────────────────────────────────────────────
 
 def iso_weeks(days):
-    """Group day counts into left→right week columns (Sun→Sat, GitHub-style)."""
+    """Group day counts into left→right week columns (Sun→Sat, GitHub-style).
+
+    Returns (weeks, month_marks) where month_marks is [(week_index, 'Mon')]
+    — one label for the column containing each month's 1st.
+    """
     if not days:
-        return [[0] * 7]
+        return [[0] * 7], []
 
     counts = {d["date"]: d["count"] for d in days}
     start = date.fromisoformat(days[0]["date"])
@@ -66,7 +73,19 @@ def iso_weeks(days):
             column.append(counts.get(cur.isoformat(), 0))
             cur += timedelta(days=1)
         weeks.append(column)
-    return weeks
+
+    # month labels — column containing each 1st-of-month within the window
+    marks = []
+    y, mo = start.year, start.month
+    while (y, mo) <= (end.year, end.month):
+        m1 = date(y, mo, 1)
+        if m1 >= start:
+            col = (m1 - start).days // 7
+            marks.append((col, m1.strftime("%b")))
+        mo += 1
+        if mo == 13:
+            y, mo = y + 1, 1
+    return weeks, marks
 
 
 # ── Render ─────────────────────────────────────────────────────────────
@@ -75,7 +94,7 @@ def render(static: bool = False) -> str:
     with open(DATA, encoding="utf-8") as f:
         payload = json.load(f)
     stats = payload["stats"]
-    weeks = iso_weeks(payload["days"])
+    weeks, months = iso_weeks(payload["days"])
 
     n_weeks = len(weeks)
     grid_w = n_weeks * (CELL + GAP) - GAP
@@ -94,18 +113,26 @@ def render(static: bool = False) -> str:
         for di, count in enumerate(week):
             body.append(
                 f'<rect class="c" x="0" y="{di * (CELL + GAP)}" '
-                f'width="{CELL}" height="{CELL}" rx="2.5" '
-                f'fill="{PALETTE[level_for(count)]}"/>'
+                f'width="{CELL}" height="{CELL}" rx="3" '
+                f'fill="{PALETTE[level_for(count)]}" '
+                f'stroke="#ffffff" stroke-opacity="0.055" stroke-width="0.5"/>'
             )
         body.append("</g></g>")
 
     # weekday labels — Monday / Wednesday / Friday rows only (GitHub style)
     labels = []
-    for di, label in [(1, "Mo"), (3, "We"), (5, "Fr")]:
+    for di, label in [(1, "Mon"), (3, "Wed"), (5, "Fri")]:
         labels.append(
             f'<text class="lb" x="{PAD_LEFT - 8}" y="{PAD_TOP + di * (CELL + GAP) + CELL}" '
             f'text-anchor="end">{label}</text>'
         )
+
+    # month labels along the top — the column containing each month's 1st
+    for wi, mname in months:
+        if wi > 0:
+            labels.append(
+                f'<text class="lb" x="{PAD_LEFT + wi * (CELL + GAP) - 2}" y="{PAD_TOP - 6}">{mname}</text>'
+            )
 
     # legend, right-aligned under the grid
     legend_x = PAD_LEFT + grid_w - 5 * (CELL + GAP)
