@@ -1,0 +1,33 @@
+# ── Node / Vite ─────────────────────────────────────────────
+node_modules/
+package-lock.json
+*.local
+.vite/
+
+# Vite build output must NOT clobber dist/ (snake SVGs live there)
+site-dist/
+dist/index.html
+dist/assets/
+
+# ── Environment / secrets ───────────────────────────────────
+.env
+.env.*
+*.pem
+*.key
+
+# ── OS / editor ─────────────────────────────────────────────
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.log
+
+# ── Nested repos & unrelated project folders (local copies) ─
+Tusharkapoor-oop/
+Advance_hand_gesture/
+IBM-Cloud-project/
+ML-OOPS/
+ai-ml-prodigy-portfolio/
+
+# ── Python autobuild junk ───────────────────────────────────
+__pycache__/
+*.pyc

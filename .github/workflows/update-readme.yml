@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-readme
+  cancel-in-progress: false
+
 jobs:
   update-readme:
     runs-on: ubuntu-latest
