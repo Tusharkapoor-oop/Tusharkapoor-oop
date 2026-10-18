@@ -1,5 +1,8 @@
 requests==2.32.3
 beautifulsoup4==4.12.3
-# portrait-only (run locally when you change your photo):
-pillow
-numpy
+
+# ── portrait-only extras (run locally; not needed by the daily workflow) ──
+#pillow
+#numpy
+#opencv-python
+#rembg

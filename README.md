@@ -1,16 +1,22 @@
 <div align="center">
 
+<h3><code>tushar@github ~ $ ./contributions.sh --live</code></h3>
+<img src="./contrib-heatmap.svg" width="860" alt="Live contribution calendar — 154 contributions, auto-refreshed daily" />
+
+<br><br>
+
+<h3><code>tushar@github ~ $ whoami</code></h3>
 <table>
   <tr>
-    <td><img src="tushar-ascii.svg" alt="ASCII Art" width="400"/></td>
-    <td><img src="info-card.svg" alt="Info Card" width="400"/></td>
-  </tr>
-  <tr>
-    <td colspan="2"><img src="contrib-heatmap.svg" alt="Contributions" width="800"/></td>
+    <td valign="top"><img src="./tushar-ascii.svg" width="340" alt="ASCII portrait (prints itself in)" /></td>
+    <td valign="top"><img src="./info-card.svg" width="520" alt="neofetch info card" /></td>
   </tr>
 </table>
 
-</div>
+<br>
+
+<img src="assets/hero.svg" width="100%" alt="Tushar Kapoor — AI/ML Engineer · Computer Vision · Intelligent Systems" />
+
 <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=13&duration=3000&pause=1600&color=4f46e5&center=true&vCenter=true&width=700&lines=gesture+%E2%86%92+landmark+%E2%86%92+classify+%E2%86%92+dispatch+%E2%86%92+execute;telemetry+%E2%86%92+pipeline+%E2%86%92+partial_fit+%E2%86%92+inference+%E2%86%92+alert;problem+%E2%86%92+architecture+%E2%86%92+decision+%E2%86%92+implementation+%E2%86%92+proof" alt="Engineering pipelines" />
 
 <br/>

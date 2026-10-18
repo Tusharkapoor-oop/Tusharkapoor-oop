@@ -31,3 +31,8 @@ ai-ml-prodigy-portfolio/
 # ── Python autobuild junk ───────────────────────────────────
 __pycache__/
 *.pyc
+
+# ── Personal photo pipeline (local only) ────────────────────
+source-photo.jpg
+source-photo.png
+source-prepped.png

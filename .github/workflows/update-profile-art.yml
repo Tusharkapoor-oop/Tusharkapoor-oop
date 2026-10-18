@@ -10,6 +10,10 @@ name: Update profile art
 permissions:
   contents: write
 
+concurrency:
+  group: profile-art
+  cancel-in-progress: false
+
 jobs:
   heatmap:
     runs-on: ubuntu-latest
@@ -20,16 +24,17 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
-        run: pip install requests beautifulsoup4
+      - name: Install runtime deps
+        run: pip install -r scripts/requirements.txt
 
-      - name: Fetch contributions
+      - name: Fetch contributions (public HTML, no token)
         run: python scripts/fetch_contributions.py
 
       - name: Render heatmap SVG
         run: python scripts/render_heatmap_svg.py
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Commit refreshed art
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: refresh contribution heatmap [skip ci]"
+          commit_message: "chore: refresh contribution graph [skip ci]"
           file_pattern: "data/contributions.json contrib-heatmap.svg"

@@ -1,191 +1,164 @@
-"""
-render_heatmap_svg.py
-─────────────────────
-Read data/contributions.json and render a GitHub-style
-contribution heatmap as an animated SVG.
-
-The grid uses a diagonal slide-in animation (CSS keyframes),
-plays once on load, then freezes.
-"""
+# render_heatmap_svg.py
+# ----------------------
+# Renders data/contributions.json as contrib-heatmap.svg — the classic
+# 53-week × 7-day calendar of rounded boxes on a dark shell, revealed
+# week-column after week-column with CSS keyframes that play on load and
+# freeze (no looping glow).
+#
+# STATIC=1 emits a single frozen frame (handy for local Quick Look previews).
 
 import json
-import math
-from pathlib import Path
+import os
+import sys
+from datetime import date, timedelta
 
-ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "data" / "contributions.json"
-OUT  = ROOT / "contrib-heatmap.svg"
+# ── Configuration ──────────────────────────────────────────────────────
 
-# GitHub-ish green palette (level 0 → 5)
-PALETTE = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353", "#69f0a0"]
-BG      = "#0d1117"
-TEXT    = "#8b949e"
-MUTED   = "#484f58"
+BASE = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
+DATA = os.path.join(BASE, "data", "contributions.json")
+OUT  = os.path.join(BASE, "contrib-heatmap.svg")
 
-CELL    = 13        # px
-GAP     = 3         # px between cells
-RADIUS  = 2         # corner radius
-STEP    = CELL + GAP
+PALETTE = ["#1a1b31", "#262752", "#393b7f", "#4f46e5", "#7b6cff", "#a5a6ff"]
+#          none -> brightest (indigo ramp, matches the profile's #4f46e5 family)
 
-WEEKS   = 53
-DAYS    = 7
+CELL          = 11   # day square
+GAP           = 3    # gap between squares
+PAD_LEFT      = 32   # room for the Mo/We/Fr labels
+PAD_TOP       = 8
+WEEK_DELAY_MS = 22
 
-MONTH_LABELS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-
-
-def load():
-    with open(DATA) as f:
-        return json.load(f)
+BG      = "#0f0f1a"
+FG_DIM  = "#64748b"
+FG_MAIN = "#e2e8f0"
+ACCENT  = "#4f46e5"
+FONT    = "JetBrains Mono, ui-monospace, monospace"
 
 
-def build_grid(days):
-    """Return a 53×7 grid of {date, count, level}."""
-    grid = [[None]*DAYS for _ in range(WEEKS)]
+# ── Level mapping ──────────────────────────────────────────────────────
 
+def level_for(count: int) -> int:
+    if count == 0:  return 0
+    if count <= 2:  return 1
+    if count <= 5:  return 2
+    if count <= 9:  return 3
+    if count <= 15: return 4
+    return 5
+
+
+# ── Calendar → week columns ────────────────────────────────────────────
+
+def iso_weeks(days):
+    """Group day counts into left→right week columns (Sun→Sat, GitHub-style)."""
     if not days:
-        return grid
+        return [[0] * 7]
 
-    from datetime import datetime, timedelta
+    counts = {d["date"]: d["count"] for d in days}
+    start = date.fromisoformat(days[0]["date"])
+    end   = date.fromisoformat(days[-1]["date"])
 
-    # Find the Sunday of the week containing the earliest date
-    first = datetime.strptime(days[0]["date"], "%Y-%m-%d")
-    # GitHub grid starts on Sunday
-    start_offset = first.weekday()  # Monday=0 ... Sunday=6
-    # Adjust to start on Sunday
-    start = first - timedelta(days=(start_offset + 1) % 7)
+    # shift back so column 0 begins on a Sunday
+    start -= timedelta(days=(start.weekday() + 1) % 7)
 
-    by_date = {d["date"]: d for d in days}
-
-    for w in range(WEEKS):
-        for d in range(DAYS):
-            dt = start + timedelta(weeks=w, days=d)
-            key = dt.strftime("%Y-%m-%d")
-            if key in by_date:
-                grid[w][d] = by_date[key]
-            else:
-                grid[w][d] = {"date": key, "count": 0, "level": 0}
-
-    return grid, start
+    weeks, cur = [], start
+    while cur <= end:
+        column = []
+        for _ in range(7):
+            column.append(counts.get(cur.isoformat(), 0))
+            cur += timedelta(days=1)
+        weeks.append(column)
+    return weeks
 
 
-def render(data):
-    grid, start = build_grid(data["days"])
-    stats = data["stats"]
+# ── Render ─────────────────────────────────────────────────────────────
 
-    PAD_LEFT   = 30    # for day-of-week labels
-    PAD_TOP    = 22    # for month labels
-    PAD_RIGHT  = 10
-    PAD_BOTTOM = 48    # for legend + stats
+def render(static: bool = False) -> str:
+    with open(DATA, encoding="utf-8") as f:
+        payload = json.load(f)
+    stats = payload["stats"]
+    weeks = iso_weeks(payload["days"])
 
-    width  = PAD_LEFT + WEEKS * STEP + PAD_RIGHT
-    height = PAD_TOP + DAYS * STEP + PAD_BOTTOM
+    n_weeks = len(weeks)
+    grid_w = n_weeks * (CELL + GAP) - GAP
+    W = PAD_LEFT + grid_w + 34   # right margin so the "More" label never clips
+    H = PAD_TOP + 7 * (CELL + GAP) + 36
 
-    cells_svg = []
-    month_labels_svg = []
-    seen_months = set()
-
-    for w in range(WEEKS):
-        for d in range(DAYS):
-            cell = grid[w][d]
-            if cell is None:
-                continue
-
-            x = PAD_LEFT + w * STEP
-            y = PAD_TOP + d * STEP
-            level = min(cell["level"], len(PALETTE) - 1)
-            color = PALETTE[level]
-
-            # Diagonal delay for the slide-in animation
-            delay = (w + d) * 0.012  # seconds
-
-            cells_svg.append(
-                f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="{RADIUS}" '
-                f'fill="{color}" class="cell" '
-                f'style="animation-delay:{delay:.3f}s">'
-                f'<title>{cell["date"]}: {cell["count"]} contributions</title>'
-                f'</rect>'
+    body = []
+    for wi, week in enumerate(weeks):
+        gx = PAD_LEFT + wi * (CELL + GAP)
+        # outer <g> owns the position; inner <g class="wk"> owns the CSS
+        # motion — a CSS transform would override the translate attribute
+        # if they lived on the same node.
+        body.append(f'<g transform="translate({gx},{PAD_TOP})">')
+        cls = "" if static else ' class="wk" style="--i:%d"' % wi
+        body.append(f"<g{cls}>") if cls else body.append("<g>")
+        for di, count in enumerate(week):
+            body.append(
+                f'<rect class="c" x="0" y="{di * (CELL + GAP)}" '
+                f'width="{CELL}" height="{CELL}" rx="2.5" '
+                f'fill="{PALETTE[level_for(count)]}"/>'
             )
+        body.append("</g></g>")
 
-            # Month labels
-            from datetime import datetime
-            dt = datetime.strptime(cell["date"], "%Y-%m-%d")
-            month_key = f"{dt.year}-{dt.month}"
-            if d == 0 and month_key not in seen_months:
-                seen_months.add(month_key)
-                month_labels_svg.append(
-                    f'<text x="{x}" y="{PAD_TOP - 6}" fill="{TEXT}" '
-                    f'font-size="10" font-family="monospace">'
-                    f'{MONTH_LABELS[dt.month - 1]}</text>'
-                )
-
-    # Day-of-week labels
-    day_labels = ["", "Mon", "", "Wed", "", "Fri", ""]
-    day_labels_svg = []
-    for i, label in enumerate(day_labels):
-        if label:
-            y = PAD_TOP + i * STEP + CELL - 2
-            day_labels_svg.append(
-                f'<text x="{PAD_LEFT - 6}" y="{y}" fill="{TEXT}" '
-                f'font-size="9" font-family="monospace" text-anchor="end">'
-                f'{label}</text>'
-            )
-
-    # Legend (Less → More)
-    legend_y = PAD_TOP + DAYS * STEP + 16
-    legend_x_start = width - PAD_RIGHT - len(PALETTE) * (CELL + 2) - 60
-    legend_svg = [
-        f'<text x="{legend_x_start}" y="{legend_y + 10}" fill="{TEXT}" '
-        f'font-size="10" font-family="monospace">Less</text>'
-    ]
-    for i, color in enumerate(PALETTE):
-        lx = legend_x_start + 32 + i * (CELL + 2)
-        legend_svg.append(
-            f'<rect x="{lx}" y="{legend_y}" width="{CELL}" height="{CELL}" '
-            f'rx="{RADIUS}" fill="{color}" />'
+    # weekday labels — Monday / Wednesday / Friday rows only (GitHub style)
+    labels = []
+    for di, label in [(1, "Mo"), (3, "We"), (5, "Fr")]:
+        labels.append(
+            f'<text class="lb" x="{PAD_LEFT - 8}" y="{PAD_TOP + di * (CELL + GAP) + CELL}" '
+            f'text-anchor="end">{label}</text>'
         )
-    legend_svg.append(
-        f'<text x="{legend_x_start + 32 + len(PALETTE) * (CELL + 2) + 4}" '
-        f'y="{legend_y + 10}" fill="{TEXT}" font-size="10" font-family="monospace">More</text>'
+
+    # legend, right-aligned under the grid
+    legend_x = PAD_LEFT + grid_w - 5 * (CELL + GAP)
+    legend = [f'<text class="lb" x="{legend_x - 42}" y="{H - 18}">Less</text>']
+    for i, color in enumerate(PALETTE):
+        legend.append(
+            f'<rect x="{legend_x + i * (CELL + GAP)}" y="{H - 26}" width="{CELL}" '
+            f'height="{CELL}" rx="2.5" fill="{color}"/>'
+        )
+    legend.append(
+        f'<text class="lb" x="{legend_x + 5 * (CELL + GAP) + CELL + 5}" y="{H - 18}">More</text>'
     )
 
-    # Stats footer
-    stats_svg = (
-        f'<text x="{PAD_LEFT}" y="{legend_y + 10}" fill="{TEXT}" '
-        f'font-size="11" font-family="monospace">'
-        f'{stats["total"]:,} contributions in the last year'
+    days_total = len(payload["days"]) or 1
+    footer = (
+        f'<text class="ft" x="{PAD_LEFT}" y="{H - 18}">'
+        f'{stats["total"]:,} contributions'
+        f' · streak {stats["current_streak"]}d / longest {stats["longest_streak"]}d'
+        f' · best day {stats["best_day"]["count"]}'
+        f' · active {stats["active_days"]}/{days_total}d'
         f'</text>'
     )
 
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
-  <style>
-    .cell {{
-      opacity: 0;
-      transform: translateY(-8px) scale(0.5);
-      animation: reveal 0.3s ease-out forwards;
-    }}
-    @keyframes reveal {{
-      to {{
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }}
-    }}
-  </style>
-  <rect width="{width}" height="{height}" fill="{BG}" rx="6" />
-  {"".join(month_labels_svg)}
-  {"".join(day_labels_svg)}
-  {"".join(cells_svg)}
-  {"".join(legend_svg)}
-  {stats_svg}
-</svg>'''
+    anim = ""
+    if not static:
+        anim = (
+            f'.wk{{animation:rise .5s ease-out both;'
+            f'animation-delay:calc(var(--i) * {WEEK_DELAY_MS}ms)}}'
+            f'@keyframes rise{{from{{opacity:0;transform:translateY(5px)}}'
+            f'to{{opacity:1;transform:none}}}}'
+            f'@media (prefers-reduced-motion: reduce){{.wk{{animation:none}}}}'
+        )
 
-    OUT.write_text(svg)
-    print(f"Wrote heatmap -> {OUT} ({width}x{height})")
-
-
-def main():
-    data = load()
-    render(data)
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" '
+        f'viewBox="0 0 {W} {H}" font-family="{FONT}">\n'
+        f'<style>'
+        f'.lb{{font-size:7.5px;fill:{FG_DIM}}}'
+        f'.ft{{font-size:8px;fill:{FG_MAIN}}}'
+        f'{anim}'
+        f'</style>\n'
+        f'<rect width="{W}" height="{H}" rx="8" fill="{BG}"/>\n'
+        f'{"".join(body)}\n'
+        f'{"".join(labels)}\n'
+        f'{"".join(legend)}\n'
+        f'{footer}\n'
+        f'</svg>\n'
+    )
 
 
 if __name__ == "__main__":
-    main()
+    static = os.environ.get("STATIC") == "1"
+    svg = render(static)
+    with open(OUT, "w", encoding="utf-8") as f:
+        f.write(svg)
+    print(f"[render] wrote {OUT} ({len(svg)} bytes)")
