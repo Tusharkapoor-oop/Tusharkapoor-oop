@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tusharkapoor-oop.github.io/sitemap.xml
