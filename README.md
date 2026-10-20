@@ -67,6 +67,8 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
+  Kapoor-portfolio                     JavaScript     Frontend        1★  today
+                                       └─ Personal portfolio website - React, Vite and Tailwind with G..
   Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  2w ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
   OS_LAB_Linux_Ubantu                  Python         Backend         4★  2w ago
@@ -85,8 +87,6 @@ principle  = [
                                        └─ Crop recommendation from soil/climate features - full ML pip..
   tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         6★  2w ago
                                        └─ This project is an AI-based Study Planner designed to help s..
-  Kapoor-portfolio                     TypeScript     Frontend        1★  2w ago
-                                       └─ Personal portfolio website - React, Vite and Tailwind with G..
   NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     4★  2w ago
                                        └─ Automated NPU fallback diagnosis - find which layers fell ba..
 ```
@@ -94,6 +94,9 @@ principle  = [
 <details>
 <summary><sub>View repository links</sub></summary>
 <br/>
+
+**[Kapoor-portfolio](https://github.com/Tusharkapoor-oop/Kapoor-portfolio)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 1
+<br/><sub>Personal portfolio website - React, Vite and Tailwind with GitHub Actions CI/CD</sub>
 
 **[Tusharkapoor-oop.github.io](https://github.com/Tusharkapoor-oop/Tusharkapoor-oop.github.io)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 <br/><sub>COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, zero frameworks)</sub>
@@ -122,15 +125,12 @@ principle  = [
 **[tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER](https://github.com/Tusharkapoor-oop/tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 6
 <br/><sub>This project is an AI-based Study Planner designed to help students automatically generate  study plans and find relevant educational videos.  The project consists of both frontend and backend components.  The user interacts with the system by uploading a syllabus, which is processed to extract  key topics.</sub>
 
-**[Kapoor-portfolio](https://github.com/Tusharkapoor-oop/Kapoor-portfolio)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 1
-<br/><sub>Personal portfolio website - React, Vite and Tailwind with GitHub Actions CI/CD</sub>
-
 **[NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis](https://github.com/Tusharkapoor-oop/NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 4
 <br/><sub>Automated NPU fallback diagnosis - find which layers fell back to CPU, on which target, and why.</sub>
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-10-19 03:49 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-20 04:00 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
