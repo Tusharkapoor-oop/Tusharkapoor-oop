@@ -67,7 +67,7 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Kapoor-portfolio                     JavaScript     Frontend        1★  today
+  Kapoor-portfolio                     JavaScript     Frontend        1★  yesterday
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
   Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  2w ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
@@ -130,7 +130,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-10-20 04:00 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-21 03:49 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
