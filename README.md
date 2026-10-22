@@ -67,27 +67,27 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Kapoor-portfolio                     JavaScript     Frontend        1★  yesterday
+  OS_LAB_Linux_Ubantu                  Python         Backend         4★  today
+                                       └─ Operating Systems lab in Python - system calls, CPU scheduli..
+  Kapoor-portfolio                     JavaScript     Frontend        1★  2d ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
   Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  2w ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
-  OS_LAB_Linux_Ubantu                  Python         Backend         4★  2w ago
-                                       └─ Operating Systems lab in Python - system calls, CPU scheduli..
-  Advance_hand_gesture                 JavaScript     Vision          4★  2w ago
+  Advance_hand_gesture                 JavaScript     Vision          4★  3w ago
                                        └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
-  auracontrol-backend                  TypeScript     Vision          4★  2w ago
+  auracontrol-backend                  TypeScript     Vision          4★  3w ago
                                        └─ Real-time hand-gesture recognition backend (AuraControl) - F..
-  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            4★  2w ago
+  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            4★  3w ago
                                        └─ Netflix and Airbnb data analysis - EDA notebooks, decks, and..
-  go-bric                              TypeScript     Frontend        4★  2w ago
+  go-bric                              TypeScript     Frontend        4★  3w ago
                                        └─ Multi-agent company scouting on Next.js and Gemini - five sp..
-  ReflectAI                            Jupyter Notebook Engineering     4★  2w ago
+  ReflectAI                            Jupyter Notebook Engineering     4★  3w ago
                                        └─ Deterministic end-of-day reflection tool - structured conver..
-  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           4★  2w ago
+  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           4★  3w ago
                                        └─ Crop recommendation from soil/climate features - full ML pip..
-  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         6★  2w ago
+  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         6★  3w ago
                                        └─ This project is an AI-based Study Planner designed to help s..
-  NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     4★  2w ago
+  NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     4★  3w ago
                                        └─ Automated NPU fallback diagnosis - find which layers fell ba..
 ```
 
@@ -95,14 +95,14 @@ principle  = [
 <summary><sub>View repository links</sub></summary>
 <br/>
 
+**[OS_LAB_Linux_Ubantu](https://github.com/Tusharkapoor-oop/OS_LAB_Linux_Ubantu)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 4
+<br/><sub>Operating Systems lab in Python - system calls, CPU scheduling, synchronization, memory, file systems.</sub>
+
 **[Kapoor-portfolio](https://github.com/Tusharkapoor-oop/Kapoor-portfolio)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 1
 <br/><sub>Personal portfolio website - React, Vite and Tailwind with GitHub Actions CI/CD</sub>
 
 **[Tusharkapoor-oop.github.io](https://github.com/Tusharkapoor-oop/Tusharkapoor-oop.github.io)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 <br/><sub>COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, zero frameworks)</sub>
-
-**[OS_LAB_Linux_Ubantu](https://github.com/Tusharkapoor-oop/OS_LAB_Linux_Ubantu)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 4
-<br/><sub>Operating Systems lab in Python - system calls, CPU scheduling, synchronization, memory, file systems.</sub>
 
 **[Advance_hand_gesture](https://github.com/Tusharkapoor-oop/Advance_hand_gesture)** &nbsp;·&nbsp; `Vision` &nbsp;·&nbsp; ⭐ 4
 <br/><sub>Real-time hand-gesture recognition - MediaPipe landmarks, TensorFlow classifier, browser demo</sub>
@@ -130,7 +130,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-10-21 03:49 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-22 03:49 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
