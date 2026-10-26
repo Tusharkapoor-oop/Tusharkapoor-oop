@@ -67,9 +67,9 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  OS_LAB_Linux_Ubantu                  Python         Backend         4★  3d ago
+  OS_LAB_Linux_Ubantu                  Python         Backend         4★  4d ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
-  Kapoor-portfolio                     JavaScript     Frontend        1★  5d ago
+  Kapoor-portfolio                     JavaScript     Frontend        1★  6d ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
   Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  3w ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
@@ -130,7 +130,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-10-25 03:47 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-26 03:50 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
