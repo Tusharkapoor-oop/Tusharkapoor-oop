@@ -67,7 +67,7 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  OS_LAB_Linux_Ubantu                  Python         Backend         3★  5d ago
+  OS_LAB_Linux_Ubantu                  Python         Backend         3★  6d ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
   Kapoor-portfolio                     JavaScript     Frontend        1★  1w ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
@@ -130,7 +130,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-10-27 04:13 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-28 04:42 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
