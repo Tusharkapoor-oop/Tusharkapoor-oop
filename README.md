@@ -67,27 +67,27 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  OS_LAB_Linux_Ubantu                  Python         Backend         3★  6d ago
+  OS_LAB_Linux_Ubantu                  Python         Backend         3★  1w ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
   Kapoor-portfolio                     JavaScript     Frontend        1★  1w ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
   Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  3w ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
-  Advance_hand_gesture                 JavaScript     Vision          3★  3w ago
+  Advance_hand_gesture                 JavaScript     Vision          3★  4w ago
                                        └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
-  auracontrol-backend                  TypeScript     Vision          3★  3w ago
+  auracontrol-backend                  TypeScript     Vision          3★  4w ago
                                        └─ Real-time hand-gesture recognition backend (AuraControl) - F..
-  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            3★  3w ago
+  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            3★  4w ago
                                        └─ Netflix and Airbnb data analysis - EDA notebooks, decks, and..
-  go-bric                              TypeScript     Frontend        3★  3w ago
+  go-bric                              TypeScript     Frontend        3★  4w ago
                                        └─ Multi-agent company scouting on Next.js and Gemini - five sp..
-  ReflectAI                            Jupyter Notebook Engineering     3★  3w ago
+  ReflectAI                            Jupyter Notebook Engineering     3★  4w ago
                                        └─ Deterministic end-of-day reflection tool - structured conver..
-  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           3★  3w ago
+  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           3★  4w ago
                                        └─ Crop recommendation from soil/climate features - full ML pip..
-  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         5★  3w ago
+  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         5★  4w ago
                                        └─ This project is an AI-based Study Planner designed to help s..
-  NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     3★  3w ago
+  NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     3★  4w ago
                                        └─ Automated NPU fallback diagnosis - find which layers fell ba..
 ```
 
@@ -130,7 +130,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-10-28 04:42 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-29 04:54 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
