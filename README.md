@@ -67,6 +67,7 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
+  Nividia-X-Nebius-                    Python         Engineering     0★  today
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  1w ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
   Kapoor-portfolio                     JavaScript     Frontend        1★  1w ago
@@ -87,13 +88,13 @@ principle  = [
                                        └─ Crop recommendation from soil/climate features - full ML pip..
   tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         5★  4w ago
                                        └─ This project is an AI-based Study Planner designed to help s..
-  NPU-Fit-Checker-Automated-NPU-Fall.. Python         Engineering     3★  4w ago
-                                       └─ Automated NPU fallback diagnosis - find which layers fell ba..
 ```
 
 <details>
 <summary><sub>View repository links</sub></summary>
 <br/>
+
+**[Nividia-X-Nebius-](https://github.com/Tusharkapoor-oop/Nividia-X-Nebius-)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
 **[OS_LAB_Linux_Ubantu](https://github.com/Tusharkapoor-oop/OS_LAB_Linux_Ubantu)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 3
 <br/><sub>Operating Systems lab in Python - system calls, CPU scheduling, synchronization, memory, file systems.</sub>
@@ -125,12 +126,9 @@ principle  = [
 **[tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER](https://github.com/Tusharkapoor-oop/tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 5
 <br/><sub>This project is an AI-based Study Planner designed to help students automatically generate  study plans and find relevant educational videos.  The project consists of both frontend and backend components.  The user interacts with the system by uploading a syllabus, which is processed to extract  key topics.</sub>
 
-**[NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis](https://github.com/Tusharkapoor-oop/NPU-Fit-Checker-Automated-NPU-Fallback-Diagnosis)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 3
-<br/><sub>Automated NPU fallback diagnosis - find which layers fell back to CPU, on which target, and why.</sub>
-
 </details>
 
-<sub><sup>↻ auto-updated · 2026-10-29 04:54 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-30 04:54 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
