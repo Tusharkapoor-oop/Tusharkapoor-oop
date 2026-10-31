@@ -67,26 +67,26 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Nividia-X-Nebius-                    Python         Engineering     0★  today
+  Nividia-X-Nebius-                    Python         Engineering     0★  yesterday
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  1w ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
   Kapoor-portfolio                     JavaScript     Frontend        1★  1w ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
-  Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  3w ago
+  Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  4w ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
-  Advance_hand_gesture                 JavaScript     Vision          3★  4w ago
+  Advance_hand_gesture                 JavaScript     Vision          3★  1mo ago
                                        └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
-  auracontrol-backend                  TypeScript     Vision          3★  4w ago
+  auracontrol-backend                  TypeScript     Vision          3★  1mo ago
                                        └─ Real-time hand-gesture recognition backend (AuraControl) - F..
-  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            3★  4w ago
+  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            3★  1mo ago
                                        └─ Netflix and Airbnb data analysis - EDA notebooks, decks, and..
-  go-bric                              TypeScript     Frontend        3★  4w ago
+  go-bric                              TypeScript     Frontend        3★  1mo ago
                                        └─ Multi-agent company scouting on Next.js and Gemini - five sp..
-  ReflectAI                            Jupyter Notebook Engineering     3★  4w ago
+  ReflectAI                            Jupyter Notebook Engineering     3★  1mo ago
                                        └─ Deterministic end-of-day reflection tool - structured conver..
-  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           3★  4w ago
+  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           3★  1mo ago
                                        └─ Crop recommendation from soil/climate features - full ML pip..
-  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         5★  4w ago
+  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         5★  1mo ago
                                        └─ This project is an AI-based Study Planner designed to help s..
 ```
 
@@ -128,7 +128,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-10-30 04:54 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-10-31 04:40 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
