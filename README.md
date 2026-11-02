@@ -67,12 +67,13 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Nividia-X-Nebius-                    Python         Engineering     0★  2d ago
+  Third-Eye-LLM                        Python         Engineering     0★  today
+  Nividia-X-Nebius-                    Python         Engineering     0★  3d ago
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  1w ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
   Kapoor-portfolio                     JavaScript     Frontend        1★  1w ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
-  Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  4w ago
+  Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  1mo ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
   Advance_hand_gesture                 JavaScript     Vision          3★  1mo ago
                                        └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
@@ -86,13 +87,13 @@ principle  = [
                                        └─ Deterministic end-of-day reflection tool - structured conver..
   Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           3★  1mo ago
                                        └─ Crop recommendation from soil/climate features - full ML pip..
-  tushar_cse-AI-and-ML-A_AI-STUDY-PL.. HTML           Backend         5★  1mo ago
-                                       └─ This project is an AI-based Study Planner designed to help s..
 ```
 
 <details>
 <summary><sub>View repository links</sub></summary>
 <br/>
+
+**[Third-Eye-LLM](https://github.com/Tusharkapoor-oop/Third-Eye-LLM)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
 **[Nividia-X-Nebius-](https://github.com/Tusharkapoor-oop/Nividia-X-Nebius-)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
@@ -123,12 +124,9 @@ principle  = [
 **[Sustainable-Agriculture-Project](https://github.com/Tusharkapoor-oop/Sustainable-Agriculture-Project)** &nbsp;·&nbsp; `AI/ML` &nbsp;·&nbsp; ⭐ 3
 <br/><sub>Crop recommendation from soil/climate features - full ML pipeline with preprocessing and evaluation.</sub>
 
-**[tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER](https://github.com/Tusharkapoor-oop/tushar_cse-AI-and-ML-A_AI-STUDY-PLANNER)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 5
-<br/><sub>This project is an AI-based Study Planner designed to help students automatically generate  study plans and find relevant educational videos.  The project consists of both frontend and backend components.  The user interacts with the system by uploading a syllabus, which is processed to extract  key topics.</sub>
-
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-01 04:59 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-02 05:00 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
