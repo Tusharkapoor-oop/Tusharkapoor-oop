@@ -68,10 +68,10 @@ principle  = [
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
   Third-Eye-LLM                        Python         Engineering     0★  today
-  Nividia-X-Nebius-                    Python         Engineering     0★  3d ago
+  Nividia-X-Nebius-                    Python         Engineering     0★  4d ago
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  1w ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
-  Kapoor-portfolio                     JavaScript     Frontend        1★  1w ago
+  Kapoor-portfolio                     JavaScript     Frontend        1★  2w ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
   Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  1mo ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
@@ -126,7 +126,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-02 05:00 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-03 05:50 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
