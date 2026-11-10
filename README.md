@@ -68,11 +68,12 @@ principle  = [
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
   Third-Eye-LLM                        Python         Engineering     0★  today
+  weblens-edge                         Python         Engineering     0★  today
+  Kapoor-portfolio                     JavaScript     Frontend        1★  today
+                                       └─ Personal portfolio website - React, Vite and Tailwind with G..
   Nividia-X-Nebius-                    Python         Engineering     0★  1w ago
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  2w ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
-  Kapoor-portfolio                     JavaScript     Frontend        1★  2w ago
-                                       └─ Personal portfolio website - React, Vite and Tailwind with G..
   Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  1mo ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
   Advance_hand_gesture                 JavaScript     Vision          3★  1mo ago
@@ -85,8 +86,6 @@ principle  = [
                                        └─ Multi-agent company scouting on Next.js and Gemini - five sp..
   ReflectAI                            Jupyter Notebook Engineering     3★  1mo ago
                                        └─ Deterministic end-of-day reflection tool - structured conver..
-  Sustainable-Agriculture-Project      Jupyter Notebook AI/ML           3★  1mo ago
-                                       └─ Crop recommendation from soil/climate features - full ML pip..
 ```
 
 <details>
@@ -95,13 +94,15 @@ principle  = [
 
 **[Third-Eye-LLM](https://github.com/Tusharkapoor-oop/Third-Eye-LLM)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
+**[weblens-edge](https://github.com/Tusharkapoor-oop/weblens-edge)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
+
+**[Kapoor-portfolio](https://github.com/Tusharkapoor-oop/Kapoor-portfolio)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 1
+<br/><sub>Personal portfolio website - React, Vite and Tailwind with GitHub Actions CI/CD</sub>
+
 **[Nividia-X-Nebius-](https://github.com/Tusharkapoor-oop/Nividia-X-Nebius-)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
 **[OS_LAB_Linux_Ubantu](https://github.com/Tusharkapoor-oop/OS_LAB_Linux_Ubantu)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 3
 <br/><sub>Operating Systems lab in Python - system calls, CPU scheduling, synchronization, memory, file systems.</sub>
-
-**[Kapoor-portfolio](https://github.com/Tusharkapoor-oop/Kapoor-portfolio)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 1
-<br/><sub>Personal portfolio website - React, Vite and Tailwind with GitHub Actions CI/CD</sub>
 
 **[Tusharkapoor-oop.github.io](https://github.com/Tusharkapoor-oop/Tusharkapoor-oop.github.io)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 <br/><sub>COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, zero frameworks)</sub>
@@ -121,12 +122,9 @@ principle  = [
 **[ReflectAI](https://github.com/Tusharkapoor-oop/ReflectAI)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 3
 <br/><sub>Deterministic end-of-day reflection tool - structured conversation to a psychological tree output.</sub>
 
-**[Sustainable-Agriculture-Project](https://github.com/Tusharkapoor-oop/Sustainable-Agriculture-Project)** &nbsp;·&nbsp; `AI/ML` &nbsp;·&nbsp; ⭐ 3
-<br/><sub>Crop recommendation from soil/climate features - full ML pipeline with preprocessing and evaluation.</sub>
-
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-09 05:17 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-10 06:30 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
