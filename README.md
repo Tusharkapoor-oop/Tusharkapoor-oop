@@ -68,11 +68,12 @@ principle  = [
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
   Third-Eye-LLM                        Python         Engineering     0★  today
-  weblens-edge                         Python         Engineering     0★  today
-  Kapoor-portfolio                     JavaScript     Frontend        1★  today
+  remote-mcp-server-authless           TypeScript     Engineering     0★  today
+  weblens-edge                         Python         Engineering     0★  yesterday
+  Kapoor-portfolio                     JavaScript     Frontend        1★  yesterday
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
   Nividia-X-Nebius-                    Python         Engineering     0★  1w ago
-  OS_LAB_Linux_Ubantu                  Python         Backend         3★  2w ago
+  OS_LAB_Linux_Ubantu                  Python         Backend         3★  3w ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
   Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  1mo ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
@@ -84,8 +85,6 @@ principle  = [
                                        └─ Netflix and Airbnb data analysis - EDA notebooks, decks, and..
   go-bric                              TypeScript     Frontend        3★  1mo ago
                                        └─ Multi-agent company scouting on Next.js and Gemini - five sp..
-  ReflectAI                            Jupyter Notebook Engineering     3★  1mo ago
-                                       └─ Deterministic end-of-day reflection tool - structured conver..
 ```
 
 <details>
@@ -93,6 +92,8 @@ principle  = [
 <br/>
 
 **[Third-Eye-LLM](https://github.com/Tusharkapoor-oop/Third-Eye-LLM)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
+
+**[remote-mcp-server-authless](https://github.com/Tusharkapoor-oop/remote-mcp-server-authless)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
 **[weblens-edge](https://github.com/Tusharkapoor-oop/weblens-edge)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
@@ -119,12 +120,9 @@ principle  = [
 **[go-bric](https://github.com/Tusharkapoor-oop/go-bric)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 3
 <br/><sub>Multi-agent company scouting on Next.js and Gemini - five specialist agents over a shared dataset.</sub>
 
-**[ReflectAI](https://github.com/Tusharkapoor-oop/ReflectAI)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 3
-<br/><sub>Deterministic end-of-day reflection tool - structured conversation to a psychological tree output.</sub>
-
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-10 06:30 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-11 05:17 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
