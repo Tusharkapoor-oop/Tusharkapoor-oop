@@ -67,10 +67,10 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Third-Eye-LLM                        Python         Engineering     0★  today
-  remote-mcp-server-authless           TypeScript     Engineering     0★  today
-  weblens-edge                         Python         Engineering     0★  yesterday
-  Kapoor-portfolio                     JavaScript     Frontend        1★  yesterday
+  Third-Eye-LLM                        Python         Engineering     0★  yesterday
+  remote-mcp-server-authless           TypeScript     Engineering     0★  yesterday
+  weblens-edge                         Python         Engineering     0★  2d ago
+  Kapoor-portfolio                     JavaScript     Frontend        1★  2d ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
   Nividia-X-Nebius-                    Python         Engineering     0★  1w ago
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  3w ago
@@ -122,7 +122,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-11 05:17 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-12 06:21 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
