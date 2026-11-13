@@ -67,15 +67,15 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Third-Eye-LLM                        Python         Engineering     0★  yesterday
-  remote-mcp-server-authless           TypeScript     Engineering     0★  yesterday
-  weblens-edge                         Python         Engineering     0★  2d ago
-  Kapoor-portfolio                     JavaScript     Frontend        1★  2d ago
+  Third-Eye-LLM                        Python         Engineering     0★  2d ago
+  remote-mcp-server-authless           TypeScript     Engineering     0★  2d ago
+  weblens-edge                         Python         Engineering     0★  3d ago
+  Kapoor-portfolio                     JavaScript     Frontend        1★  3d ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
-  Nividia-X-Nebius-                    Python         Engineering     0★  1w ago
+  Nividia-X-Nebius-                    Python         Engineering     0★  2w ago
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  3w ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
-  Tusharkapoor-oop.github.io           JavaScript     Engineering     0★  1mo ago
+  Tusharkapoor-oop.github.io           JavaScript     Engineering     1★  1mo ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
   Advance_hand_gesture                 JavaScript     Vision          3★  1mo ago
                                        └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
@@ -105,7 +105,7 @@ principle  = [
 **[OS_LAB_Linux_Ubantu](https://github.com/Tusharkapoor-oop/OS_LAB_Linux_Ubantu)** &nbsp;·&nbsp; `Backend` &nbsp;·&nbsp; ⭐ 3
 <br/><sub>Operating Systems lab in Python - system calls, CPU scheduling, synchronization, memory, file systems.</sub>
 
-**[Tusharkapoor-oop.github.io](https://github.com/Tusharkapoor-oop/Tusharkapoor-oop.github.io)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
+**[Tusharkapoor-oop.github.io](https://github.com/Tusharkapoor-oop/Tusharkapoor-oop.github.io)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 1
 <br/><sub>COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, zero frameworks)</sub>
 
 **[Advance_hand_gesture](https://github.com/Tusharkapoor-oop/Advance_hand_gesture)** &nbsp;·&nbsp; `Vision` &nbsp;·&nbsp; ⭐ 3
@@ -122,7 +122,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-12 06:21 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-13 05:41 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
