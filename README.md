@@ -67,10 +67,11 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Third-Eye-LLM                        Python         Engineering     0★  2d ago
-  remote-mcp-server-authless           TypeScript     Engineering     0★  2d ago
-  weblens-edge                         Python         Engineering     0★  3d ago
-  Kapoor-portfolio                     JavaScript     Frontend        1★  3d ago
+  NLP-Project                          Jupyter Notebook Engineering     0★  today
+  Third-Eye-LLM                        Python         Engineering     0★  3d ago
+  remote-mcp-server-authless           TypeScript     Engineering     0★  3d ago
+  weblens-edge                         Python         Engineering     0★  4d ago
+  Kapoor-portfolio                     JavaScript     Frontend        1★  4d ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
   Nividia-X-Nebius-                    Python         Engineering     0★  2w ago
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  3w ago
@@ -83,13 +84,13 @@ principle  = [
                                        └─ Real-time hand-gesture recognition backend (AuraControl) - F..
   VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            3★  1mo ago
                                        └─ Netflix and Airbnb data analysis - EDA notebooks, decks, and..
-  go-bric                              TypeScript     Frontend        3★  1mo ago
-                                       └─ Multi-agent company scouting on Next.js and Gemini - five sp..
 ```
 
 <details>
 <summary><sub>View repository links</sub></summary>
 <br/>
+
+**[NLP-Project](https://github.com/Tusharkapoor-oop/NLP-Project)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
 **[Third-Eye-LLM](https://github.com/Tusharkapoor-oop/Third-Eye-LLM)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
@@ -117,12 +118,9 @@ principle  = [
 **[VOIS_AICTE_Oct2025_TUSHAR-KAPOOR](https://github.com/Tusharkapoor-oop/VOIS_AICTE_Oct2025_TUSHAR-KAPOOR)** &nbsp;·&nbsp; `Data` &nbsp;·&nbsp; ⭐ 3
 <br/><sub>Netflix and Airbnb data analysis - EDA notebooks, decks, and course materials.</sub>
 
-**[go-bric](https://github.com/Tusharkapoor-oop/go-bric)** &nbsp;·&nbsp; `Frontend` &nbsp;·&nbsp; ⭐ 3
-<br/><sub>Multi-agent company scouting on Next.js and Gemini - five specialist agents over a shared dataset.</sub>
-
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-13 05:41 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-14 05:31 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
