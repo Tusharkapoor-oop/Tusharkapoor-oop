@@ -67,11 +67,12 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  NLP-Project                          Jupyter Notebook Engineering     0★  today
-  Third-Eye-LLM                        Python         Engineering     0★  3d ago
-  remote-mcp-server-authless           TypeScript     Engineering     0★  3d ago
-  weblens-edge                         Python         Engineering     0★  4d ago
-  Kapoor-portfolio                     JavaScript     Frontend        1★  4d ago
+  OS_ONE_NEW_OS                        C              Systems         0★  today
+  NLP-Project                          Jupyter Notebook Engineering     0★  yesterday
+  Third-Eye-LLM                        Python         Engineering     0★  4d ago
+  remote-mcp-server-authless           TypeScript     Engineering     0★  4d ago
+  weblens-edge                         Python         Engineering     0★  5d ago
+  Kapoor-portfolio                     JavaScript     Frontend        1★  5d ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
   Nividia-X-Nebius-                    Python         Engineering     0★  2w ago
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  3w ago
@@ -82,13 +83,13 @@ principle  = [
                                        └─ Real-time hand-gesture recognition - MediaPipe landmarks, Te..
   auracontrol-backend                  TypeScript     Vision          3★  1mo ago
                                        └─ Real-time hand-gesture recognition backend (AuraControl) - F..
-  VOIS_AICTE_Oct2025_TUSHAR-KAPOOR     Jupyter Notebook Data            3★  1mo ago
-                                       └─ Netflix and Airbnb data analysis - EDA notebooks, decks, and..
 ```
 
 <details>
 <summary><sub>View repository links</sub></summary>
 <br/>
+
+**[OS_ONE_NEW_OS](https://github.com/Tusharkapoor-oop/OS_ONE_NEW_OS)** &nbsp;·&nbsp; `Systems` &nbsp;·&nbsp; ⭐ 0
 
 **[NLP-Project](https://github.com/Tusharkapoor-oop/NLP-Project)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
@@ -115,12 +116,9 @@ principle  = [
 **[auracontrol-backend](https://github.com/Tusharkapoor-oop/auracontrol-backend)** &nbsp;·&nbsp; `Vision` &nbsp;·&nbsp; ⭐ 3
 <br/><sub>Real-time hand-gesture recognition backend (AuraControl) - FastAPI, MediaPipe, WebSocket</sub>
 
-**[VOIS_AICTE_Oct2025_TUSHAR-KAPOOR](https://github.com/Tusharkapoor-oop/VOIS_AICTE_Oct2025_TUSHAR-KAPOOR)** &nbsp;·&nbsp; `Data` &nbsp;·&nbsp; ⭐ 3
-<br/><sub>Netflix and Airbnb data analysis - EDA notebooks, decks, and course materials.</sub>
-
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-14 05:31 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-15 05:29 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
