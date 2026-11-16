@@ -67,12 +67,12 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  OS_ONE_NEW_OS                        C              Systems         0★  today
-  NLP-Project                          Jupyter Notebook Engineering     0★  yesterday
-  Third-Eye-LLM                        Python         Engineering     0★  4d ago
-  remote-mcp-server-authless           TypeScript     Engineering     0★  4d ago
-  weblens-edge                         Python         Engineering     0★  5d ago
-  Kapoor-portfolio                     JavaScript     Frontend        1★  5d ago
+  NLP-Project                          Jupyter Notebook Engineering     0★  today
+  OS_ONE_NEW_OS                        C              Systems         0★  yesterday
+  Third-Eye-LLM                        Python         Engineering     0★  5d ago
+  remote-mcp-server-authless           TypeScript     Engineering     0★  5d ago
+  weblens-edge                         Python         Engineering     0★  6d ago
+  Kapoor-portfolio                     JavaScript     Frontend        1★  6d ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
   Nividia-X-Nebius-                    Python         Engineering     0★  2w ago
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  3w ago
@@ -89,9 +89,9 @@ principle  = [
 <summary><sub>View repository links</sub></summary>
 <br/>
 
-**[OS_ONE_NEW_OS](https://github.com/Tusharkapoor-oop/OS_ONE_NEW_OS)** &nbsp;·&nbsp; `Systems` &nbsp;·&nbsp; ⭐ 0
-
 **[NLP-Project](https://github.com/Tusharkapoor-oop/NLP-Project)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
+
+**[OS_ONE_NEW_OS](https://github.com/Tusharkapoor-oop/OS_ONE_NEW_OS)** &nbsp;·&nbsp; `Systems` &nbsp;·&nbsp; ⭐ 0
 
 **[Third-Eye-LLM](https://github.com/Tusharkapoor-oop/Third-Eye-LLM)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
@@ -118,7 +118,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-15 05:29 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-16 05:27 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
