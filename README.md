@@ -67,16 +67,16 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  NLP-Project                          Python         Engineering     0★  2d ago
-  Third-Eye-LLM                        Python         Engineering     0★  2d ago
-  Logistics---databricks-              Python         Engineering     0★  2d ago
-  OS_ONE_NEW_OS                        C              Systems         0★  5d ago
+  NLP-Project                          Python         Engineering     0★  3d ago
+  Third-Eye-LLM                        Python         Engineering     0★  3d ago
+  Logistics---databricks-              Python         Engineering     0★  3d ago
+  OS_ONE_NEW_OS                        C              Systems         0★  6d ago
   remote-mcp-server-authless           TypeScript     Engineering     0★  1w ago
   weblens-edge                         Python         Engineering     0★  1w ago
   Kapoor-portfolio                     JavaScript     Frontend        1★  1w ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
-  Nividia-X-Nebius-                    Python         Engineering     0★  2w ago
-  OS_LAB_Linux_Ubantu                  Python         Backend         3★  4w ago
+  Nividia-X-Nebius-                    Python         Engineering     0★  3w ago
+  OS_LAB_Linux_Ubantu                  Python         Backend         3★  1mo ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
   Tusharkapoor-oop.github.io           JavaScript     Engineering     1★  1mo ago
                                        └─ COGNITUM - a 4D neural manifold portfolio (Three.js + GLSL, ..
@@ -116,7 +116,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-19 06:32 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-20 06:19 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
