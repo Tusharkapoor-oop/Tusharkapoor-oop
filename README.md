@@ -67,9 +67,9 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  NLP-Project                          Python         Engineering     0★  5d ago
-  Third-Eye-LLM                        Python         Engineering     0★  5d ago
-  Logistics---databricks-              Python         Engineering     0★  5d ago
+  Logistics-Project-Databricks         Python         Engineering     0★  today
+  NLP-Project                          Python         Engineering     0★  6d ago
+  Third-Eye-LLM                        Python         Engineering     0★  6d ago
   OS_ONE_NEW_OS                        C              Systems         0★  1w ago
   remote-mcp-server-authless           TypeScript     Engineering     0★  1w ago
   weblens-edge                         Python         Engineering     0★  1w ago
@@ -88,11 +88,11 @@ principle  = [
 <summary><sub>View repository links</sub></summary>
 <br/>
 
+**[Logistics-Project-Databricks](https://github.com/Tusharkapoor-oop/Logistics-Project-Databricks)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
+
 **[NLP-Project](https://github.com/Tusharkapoor-oop/NLP-Project)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
 **[Third-Eye-LLM](https://github.com/Tusharkapoor-oop/Third-Eye-LLM)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
-
-**[Logistics---databricks-](https://github.com/Tusharkapoor-oop/Logistics---databricks-)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
 **[OS_ONE_NEW_OS](https://github.com/Tusharkapoor-oop/OS_ONE_NEW_OS)** &nbsp;·&nbsp; `Systems` &nbsp;·&nbsp; ⭐ 0
 
@@ -116,7 +116,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-22 05:43 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-23 06:29 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
