@@ -67,15 +67,15 @@ principle  = [
 ```
   REPOSITORY                           LANGUAGE       TYPE            ⭐  UPDATED
   ─────────────────────────────────────────────────────────────────────────────────────
-  Logistics-Project-Databricks         Python         Engineering     0★  3d ago
-  NLP-Project                          Python         Engineering     0★  1w ago
+  NLP-Project                          Python         Engineering     0★  today
+  Logistics-Project-Databricks         Python         Engineering     0★  4d ago
   Third-Eye-LLM                        Python         Engineering     0★  1w ago
   OS_ONE_NEW_OS                        C              Systems         0★  1w ago
   remote-mcp-server-authless           TypeScript     Engineering     0★  2w ago
   weblens-edge                         Python         Engineering     0★  2w ago
   Kapoor-portfolio                     JavaScript     Frontend        1★  2w ago
                                        └─ Personal portfolio website - React, Vite and Tailwind with G..
-  Nividia-X-Nebius-                    Python         Engineering     0★  3w ago
+  Nividia-X-Nebius-                    Python         Engineering     0★  4w ago
   OS_LAB_Linux_Ubantu                  Python         Backend         3★  1mo ago
                                        └─ Operating Systems lab in Python - system calls, CPU scheduli..
   Tusharkapoor-oop.github.io           JavaScript     Engineering     1★  1mo ago
@@ -88,9 +88,9 @@ principle  = [
 <summary><sub>View repository links</sub></summary>
 <br/>
 
-**[Logistics-Project-Databricks](https://github.com/Tusharkapoor-oop/Logistics-Project-Databricks)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
-
 **[NLP-Project](https://github.com/Tusharkapoor-oop/NLP-Project)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
+
+**[Logistics-Project-Databricks](https://github.com/Tusharkapoor-oop/Logistics-Project-Databricks)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
 **[Third-Eye-LLM](https://github.com/Tusharkapoor-oop/Third-Eye-LLM)** &nbsp;·&nbsp; `Engineering` &nbsp;·&nbsp; ⭐ 0
 
@@ -116,7 +116,7 @@ principle  = [
 
 </details>
 
-<sub><sup>↻ auto-updated · 2026-11-26 07:26 UTC</sup></sub>
+<sub><sup>↻ auto-updated · 2026-11-27 07:22 UTC</sup></sub>
 <!-- REPOS:END -->
 
 <br/>
